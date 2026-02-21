@@ -266,6 +266,7 @@
                 part2SyllabusDesc: "Corporate Strategy addresses the critical question of where to compete by determining the overall growth scope of a multinational firm. It explores how companies expand their boundaries through vertical integration, horizontal diversification, and global expansion, utilizing methods like strategic alliances and M&A.",
                 teamHeader: "Meet Our Team", back: "Back to Home", enter: "VIEW LECTURES", statusComing: "Coming soon",
                 footerCourse: "Strategic Management of Multinational Corporations", footerUpdate: "Last Updated: 2026-02-20 | v7.7.1", footerInstructor: "Instructor: Prof. Shihmin Lo", footerDept: "Dept. of International Business Studies (IBS)",
+                quizResults: "Quiz Results", quizRetry: "Restart Quiz", quizFinish: "View Results"
             },
             zh: {
                 logo: "國策管‐全英授課", header: "全球跨界者：無國界策略管理", subHeader: "堅信毅力、建立韌性，並成為策略的驅動者",
@@ -280,7 +281,8 @@
                 part2CardDesc: <span>集團策略旨在探討<strong className="font-black">「在哪裡競爭 (Where to compete)」</strong>，藉此決定跨國企業整體的成長範疇。</span>,
                 part2SyllabusDesc: "集團策略則探討「在哪裡競爭」的關鍵難題，藉此決定跨國企業整體的成長範疇。它剖析企業如何透過垂直整合、水平多角化與全球擴張來拓展版圖，並運用策略聯盟與併購等手段達成目標。",
                 teamHeader: "團隊介紹", back: "返回首頁", enter: "進入講義清單", statusComing: "即將推出",
-                footerCourse: "國際策略管理 (Strategic Management of MNCs)", footerUpdate: "最後更新: 2026-02-20 | v7.7.1", footerInstructor: "授課教師: Prof. Shihmin Lo", footerDept: "國企系 IBS"
+                footerCourse: "國際策略管理 (Strategic Management of MNCs)", footerUpdate: "最後更新: 2026-02-20 | v7.7.1", footerInstructor: "授課教師: Prof. Shihmin Lo", footerDept: "國企系 IBS",
+                quizResults: "測驗結果", quizRetry: "重新測驗", quizFinish: "查看測驗結果"
             }
         };
 
@@ -292,17 +294,58 @@
             const [expandedMenu, setExpandedMenu] = useState(null); 
             const [selectedMember, setSelectedMember] = useState(null);
             const [activeModule, setActiveModule] = useState(null);
+            
+            // 測驗系統
             const [quizPage, setQuizPage] = useState(0); 
             const [userAnswers, setUserAnswers] = useState({}); 
-            const [expandedStep, setExpandedStep] = useState(1); // 學習指引的預設展開步驟
+            const [isQuizFinished, setIsQuizFinished] = useState(false);
+            
+            const [expandedStep, setExpandedStep] = useState(1); 
 
             const isEn = lang === 'en';
             const currentUI = uiText[lang];
 
             const handleNavigate = (target) => { setView(target); setIsMenuOpen(false); setExpandedMenu(null); window.scrollTo(0, 0); };
             const handleNavigateToLN = (lecture) => { setActiveModule(lecture); setView('detail'); setIsMenuOpen(false); setExpandedMenu(null); window.scrollTo(0, 0); };
-            const handleQuizAnswer = (qId, optionIdx) => { setUserAnswers(prev => ({ ...prev, [qId]: optionIdx })); };
-            const nextQuizPage = () => { setUserAnswers({}); setQuizPage((prev) => (prev + 1) % 3); };
+            
+            // --- 測驗系統邏輯更新 ---
+            const handleQuizAnswer = (qId, optionIdx) => { 
+                setUserAnswers(prev => ({ ...prev, [qId]: optionIdx })); 
+            };
+            
+            const nextQuizPage = () => { 
+                if (quizPage < 2) {
+                    setQuizPage((prev) => prev + 1); 
+                } else {
+                    setIsQuizFinished(true); // 到達最後一頁時顯示結算畫面
+                }
+                // 點擊後自動滾動至測驗區塊上方
+                setTimeout(() => {
+                    document.getElementById('quiz-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 50);
+            };
+
+            const resetQuiz = () => {
+                setUserAnswers({});
+                setQuizPage(0);
+                setIsQuizFinished(false);
+                // 重新測驗時自動滾動至測驗區塊上方
+                setTimeout(() => {
+                    document.getElementById('quiz-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 50);
+            };
+
+            const calculateScore = () => {
+                let score = 0;
+                quizData.forEach(q => {
+                    const ansIdx = userAnswers[q.id];
+                    if (ansIdx !== undefined && q.en.options[ansIdx].correct) {
+                        score += 1;
+                    }
+                });
+                return score;
+            };
+
             const displayedQuestions = quizData.slice(quizPage * 2, quizPage * 2 + 2);
 
             const { ChevronRight, ChevronDown, X, Menu, Languages, Sun, Moon, Globe, Earth, Book, Users, Help, ArrowLeft, Clock, Play, External, Target, Graduation, Sparkles, MousePointer, Youtube, Mail } = Icons;
@@ -326,9 +369,15 @@
                             </div>
 
                             <div className="flex items-center gap-3 relative text-current">
-                                <button onClick={() => setLang(isEn ? 'zh' : 'en')} className={`p-3 rounded-xl border transition-all duration-700 active:scale-90 ${isDarkMode ? 'border-white/10 bg-white/5 text-blue-400' : 'border-black/5 bg-slate-100 text-blue-600'}`}><Languages /></button>
-                                <button onClick={() => setIsDarkMode(!isDarkMode)} className={`p-3 rounded-xl border transition-all duration-700 active:scale-90 ${isDarkMode ? 'border-white/10 bg-white/5 text-yellow-400' : 'border-black/5 bg-slate-100 text-slate-600'}`}>{isDarkMode ? <Sun /> : <Moon />}</button>
-                                <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={`p-3 rounded-xl border transition-all duration-700 active:scale-90 ${isDarkMode ? 'border-white/10 bg-white/5 text-blue-400' : 'border-black/5 bg-slate-100 text-blue-600'}`}>{isMenuOpen ? <X /> : <Menu />}</button>
+                                <button onClick={() => setLang(isEn ? 'zh' : 'en')} title={isEn ? "Switch to Chinese" : "切換至英文"} className={`p-3 rounded-xl border transition-all duration-700 active:scale-90 ${isDarkMode ? 'border-white/10 bg-white/5 text-blue-400' : 'border-black/5 bg-slate-100 text-blue-600'}`}>
+                                    <Languages />
+                                </button>
+                                <button onClick={() => setIsDarkMode(!isDarkMode)} title={isDarkMode ? "Light Mode" : "Dark Mode"} className={`p-3 rounded-xl border transition-all duration-700 active:scale-90 ${isDarkMode ? 'border-white/10 bg-white/5 text-yellow-400' : 'border-black/5 bg-slate-100 text-slate-600'}`}>
+                                    {isDarkMode ? <Sun /> : <Moon />}
+                                </button>
+                                <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={`p-3 rounded-xl border transition-all duration-700 active:scale-90 ${isDarkMode ? 'border-white/10 bg-white/5 text-blue-400' : 'border-black/5 bg-slate-100 text-blue-600'}`}>
+                                    {isMenuOpen ? <X /> : <Menu />}
+                                </button>
                                 
                                 {isMenuOpen && (
                                     <div className={`absolute top-20 right-0 w-[85vw] max-w-sm border rounded-[2.5rem] p-8 shadow-2xl menu-animate z-[100] transition-colors duration-700 ${isDarkMode ? 'bg-black/95 border-white/10 text-white' : 'bg-white border-black/10 text-slate-900'}`}>
@@ -426,7 +475,6 @@
                                             <div className="mt-8 flex items-center gap-4 text-emerald-500 font-black uppercase text-xs tracking-widest text-current">Profiles &rarr;</div>
                                         </div>
                                         
-                                        {/* 全新 Learning Guide 卡片 */}
                                         <div onClick={() => handleNavigate('guide')} className={`hover-card group p-10 rounded-[3.5rem] border transition-all duration-700 cursor-pointer shadow-2xl flex flex-col justify-between min-h-[350px] ${isDarkMode ? 'bg-indigo-600/5 border-white/10 hover:border-indigo-500/50' : 'bg-white border-black/5 hover:border-indigo-400'}`}>
                                             <div>
                                                 <div className="flex items-center justify-between mb-8 text-indigo-500">
@@ -455,7 +503,6 @@
                             </div>
                         )}
 
-                        {/* 新增的 Learning Guide 頁面 */}
                         {view === 'guide' && (
                             <div className="animate-in max-w-5xl mx-auto pb-32 text-left text-current">
                                 <button onClick={() => handleNavigate('home')} className="flex items-center justify-start gap-4 mb-16 opacity-50 hover:opacity-100 font-bold uppercase tracking-widest transition-all"><Icons.ArrowLeft size={20} /> {currentUI.back}</button>
@@ -465,12 +512,10 @@
                                 <div className="relative pl-6 sm:pl-12 ml-4 sm:ml-6 border-l-[3px] border-indigo-500/20 space-y-12 sm:space-y-16">
                                     {guideSteps.map((step, index) => (
                                         <div key={step.id} className="relative group cursor-pointer" onClick={() => setExpandedStep(expandedStep === step.id ? null : step.id)}>
-                                            {/* 節點圓圈 */}
                                             <div className={`absolute -left-[39px] sm:-left-[67px] top-2 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-black text-sm sm:text-base border-4 transition-all duration-500 ${expandedStep === step.id ? (isDarkMode ? 'bg-indigo-500 border-[#050507] text-white scale-110' : 'bg-indigo-600 border-slate-50 text-white scale-110') : (isDarkMode ? 'bg-[#050507] border-indigo-500/50 text-indigo-400 group-hover:border-indigo-500' : 'bg-slate-50 border-indigo-300 text-indigo-600 group-hover:border-indigo-500')}`}>
                                                 {step.id}
                                             </div>
                                             
-                                            {/* 內容卡片 */}
                                             <div className={`p-6 sm:p-10 rounded-[2rem] border transition-all duration-500 ${expandedStep === step.id ? (isDarkMode ? 'bg-indigo-900/20 border-indigo-500/50 shadow-[0_0_40px_rgba(99,102,241,0.15)]' : 'bg-indigo-50 border-indigo-300 shadow-xl') : (isDarkMode ? 'bg-white/5 border-white/10 hover:border-indigo-500/30' : 'bg-white border-black/5 hover:border-indigo-300 shadow-sm')}`}>
                                                 <div className="flex justify-between items-center gap-4">
                                                     <h3 className={`text-xl sm:text-2xl font-black transition-colors duration-500 ${expandedStep === step.id ? (isDarkMode ? 'text-white' : 'text-indigo-900') : (isDarkMode ? 'text-white/80' : 'text-slate-800')}`}>
@@ -524,14 +569,12 @@
                                             </p>
                                         </div>
                                         
-                                        {/* 新增：YouTube 按鈕 */}
                                         <a href="https://youtube.com/@shihminlo6097?si=bydjIojm0I49X16n" target="_blank" rel="noopener noreferrer" className={`mt-10 inline-flex items-center gap-3 px-6 py-3 rounded-full font-bold text-sm tracking-widest uppercase transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 ${isDarkMode ? 'bg-red-600 hover:bg-red-500 text-white' : 'bg-red-600 hover:bg-red-700 text-white'}`}>
                                             <Youtube /> {isEn ? "YouTube Channel" : "YouTube 頻道"}
                                         </a>
                                     </div>
                                 </div>
                                 
-                                {/* TA Grid - RWD 優化，精確分為三欄 */}
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 text-left text-current w-full">
                                     {members.map(m => (
                                         <div key={m.id} onClick={() => setSelectedMember(m)} className={`hover-card group relative p-0 rounded-[2.5rem] border cursor-pointer overflow-hidden min-h-[400px] sm:min-h-[500px] flex flex-col justify-end transition-colors duration-700 ${isDarkMode ? 'border-white/5' : 'border-black/5'}`}>
@@ -561,7 +604,6 @@
                                                 <div className="p-3 bg-slate-500/10 rounded-2xl shrink-0 text-current">{React.cloneElement(sec.icon, { size: 40 })}</div>
                                                 <h2 className={`text-xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight whitespace-normal text-current`}>{isEn ? sec.en.title : sec.zh.title}</h2>
                                             </div>
-                                            {/* 解決了淺色模式下的副標題顏色問題，採用高質感的青藍色 (cyan-600) */}
                                             <h3 className={`text-xl sm:text-[2.2rem] font-black mb-8 italic border-b pb-6 leading-tight transition-colors duration-700 ${isDarkMode ? 'text-[#00ffff] border-white/10' : 'text-cyan-600 border-black/10'}`}>
                                                 {isEn ? sec.en.subtitle : sec.zh.subtitle}
                                             </h3>
@@ -570,68 +612,93 @@
                                     ))}
                                 </div>
 
-                                <div className={`p-10 sm:p-16 rounded-[4rem] border shadow-2xl relative overflow-hidden transition-colors duration-700 ${isDarkMode ? 'bg-indigo-600/5 text-white border-white/10' : 'bg-indigo-50 text-slate-900 border-indigo-100'}`}>
+                                {/* --- 測驗系統 UI 更新 --- */}
+                                <div id="quiz-section" className={`scroll-mt-32 p-10 sm:p-16 rounded-[4rem] border shadow-2xl relative overflow-hidden transition-colors duration-700 ${isDarkMode ? 'bg-indigo-600/5 text-white border-white/10' : 'bg-indigo-50 text-slate-900 border-indigo-100'}`}>
                                     <div className="flex flex-col items-center mb-12 text-current text-center">
                                         <div className="w-16 h-16 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 mb-6 animate-pulse"><Help size={32} /></div>
                                         <h2 className="text-3xl sm:text-5xl font-black text-center tracking-tight">{isEn ? "Knowledge Check" : "互動式問答挑戰"}</h2>
-                                        <p className="opacity-50 mt-4 font-bold text-sm uppercase tracking-widest">{isEn ? `Set ${quizPage + 1} of 3` : `第 ${quizPage + 1} 組測驗 / 共 3 組`}</p>
+                                        {!isQuizFinished && (
+                                            <p className="opacity-50 mt-4 font-bold text-sm uppercase tracking-widest">{isEn ? `Set ${quizPage + 1} of 3` : `第 ${quizPage + 1} 組測驗 / 共 3 組`}</p>
+                                        )}
                                     </div>
 
-                                    <div className="space-y-12 text-current">
-                                        {displayedQuestions.map((q) => (
-                                            <div key={q.id} className={`p-8 sm:p-10 rounded-[3rem] border transition-all duration-700 ${isDarkMode ? 'bg-black/40 border-white/5' : 'bg-white border-black/5 shadow-lg'}`}>
-                                                <h4 className="text-xl sm:text-2xl font-bold mb-8 leading-relaxed text-left text-current">{q[lang].q}</h4>
-                                                <div className="grid grid-cols-1 gap-4">
-                                                    {q[lang].options.map((opt, idx) => {
-                                                        const userChoiceIdx = userAnswers[q.id];
-                                                        const isRevealed = userChoiceIdx !== undefined;
-                                                        const isSelected = userChoiceIdx === idx;
-                                                        const isCorrect = opt.correct;
-                                                        
-                                                        let btnClass = isDarkMode ? "bg-white/5 border-white/5 hover:bg-white/10 text-white" : "bg-slate-50 border-slate-100 hover:bg-slate-100 text-slate-900";
-                                                        if (isRevealed) {
-                                                            if (isCorrect) btnClass = "bg-emerald-500/20 border-emerald-500 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.2)]";
-                                                            else if (isSelected) btnClass = "bg-rose-500/20 border-rose-500 text-rose-400 shadow-[0_0_20px_rgba(244,63,94,0.2)]";
-                                                            else btnClass = isDarkMode ? "opacity-30 grayscale" : "opacity-30 bg-slate-200 text-slate-400";
-                                                        }
-                                                        
-                                                        return (
-                                                            <div key={idx} className="space-y-2 text-left">
-                                                                <button disabled={isRevealed} onClick={() => handleQuizAnswer(q.id, idx)} className={`w-full text-left p-5 rounded-2xl border transition-all flex items-start gap-4 group ${btnClass}`}>
-                                                                    <span className={`w-8 h-8 rounded-lg flex items-center justify-center font-black shrink-0 ${isSelected ? (isDarkMode ? 'bg-white text-black' : 'bg-slate-900 text-white') : (isDarkMode ? 'bg-white/10 text-blue-400' : 'bg-slate-200 text-blue-600')}`}>
-                                                                        {opt.label}
-                                                                    </span>
-                                                                    <span className="font-semibold text-base sm:text-lg leading-snug">{opt.text}</span>
-                                                                </button>
+                                    {isQuizFinished ? (
+                                        // 總分結算畫面
+                                        <div className={`p-10 sm:p-16 rounded-[3rem] border text-center shadow-lg transition-all duration-700 ${isDarkMode ? 'bg-black/40 border-white/5' : 'bg-white border-black/5'}`}>
+                                            <div className="w-20 h-20 mx-auto rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 mb-8"><Target size={40} /></div>
+                                            <h3 className="text-3xl sm:text-4xl font-black mb-8">{currentUI.quizResults}</h3>
+                                            <div className="flex flex-col items-center justify-center mb-12 gap-4">
+                                                <div className="text-6xl sm:text-7xl font-black text-emerald-500 leading-none">
+                                                    {calculateScore()} <span className="text-3xl sm:text-4xl text-current opacity-50">/ {quizData.length}</span>
+                                                </div>
+                                                <div className="text-2xl sm:text-3xl font-black text-emerald-400 bg-emerald-500/10 px-6 py-2 rounded-full border border-emerald-500/20 shadow-inner">
+                                                    {Math.round((calculateScore() / quizData.length) * 100)}%
+                                                </div>
+                                            </div>
+                                            <button onClick={resetQuiz} className="px-10 py-4 rounded-full bg-gradient-to-r from-indigo-600 to-blue-600 font-black uppercase tracking-[0.2em] shadow-xl hover:scale-105 active:scale-95 transition-all text-white mx-auto flex items-center gap-3">
+                                                {currentUI.quizRetry} <ChevronRight />
+                                            </button>
+                                        </div>
+                                    ) : (
+                                        // 答題畫面
+                                        <>
+                                            <div className="space-y-12 text-current">
+                                                {displayedQuestions.map((q) => (
+                                                    <div key={q.id} className={`p-8 sm:p-10 rounded-[3rem] border transition-all duration-700 ${isDarkMode ? 'bg-black/40 border-white/5' : 'bg-white border-black/5 shadow-lg'}`}>
+                                                        <h4 className="text-xl sm:text-2xl font-bold mb-8 leading-relaxed text-left text-current">{q[lang].q}</h4>
+                                                        <div className="grid grid-cols-1 gap-4">
+                                                            {q[lang].options.map((opt, idx) => {
+                                                                const userChoiceIdx = userAnswers[q.id];
+                                                                const isRevealed = userChoiceIdx !== undefined;
+                                                                const isSelected = userChoiceIdx === idx;
+                                                                const isCorrect = opt.correct;
                                                                 
-                                                                {isRevealed && (
-                                                                    <div className="animate-in slide-in-from-top-2 duration-300">
-                                                                        {isCorrect && (
-                                                                            <div className="mt-2 p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-left">
-                                                                                <div className="flex items-center gap-2 mb-2 text-current font-black"><span className="text-emerald-400">✅ {isEn ? "Correct Answer Logic" : "正確答案解析"}</span></div>
-                                                                                <p className={`text-sm sm:text-base opacity-95 leading-relaxed italic transition-colors duration-700 ${!isDarkMode && 'text-slate-800'}`}>{opt.expl}</p>
-                                                                            </div>
-                                                                        )}
-                                                                        {isSelected && !isCorrect && (
-                                                                            <div className="mt-2 p-6 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-left">
-                                                                                <div className="flex items-center gap-2 mb-2 text-current font-black"><span className="text-rose-400">❌ {isEn ? "Your Choice Analysis" : "您的選項解析"}</span></div>
-                                                                                <p className={`text-sm sm:text-base opacity-95 leading-relaxed italic transition-colors duration-700 ${!isDarkMode && 'text-slate-800'}`}>{opt.expl}</p>
+                                                                let btnClass = isDarkMode ? "bg-white/5 border-white/5 hover:bg-white/10 text-white" : "bg-slate-50 border-slate-100 hover:bg-slate-100 text-slate-900";
+                                                                if (isRevealed) {
+                                                                    if (isCorrect) btnClass = "bg-emerald-500/20 border-emerald-500 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.2)]";
+                                                                    else if (isSelected) btnClass = "bg-rose-500/20 border-rose-500 text-rose-400 shadow-[0_0_20px_rgba(244,63,94,0.2)]";
+                                                                    else btnClass = isDarkMode ? "opacity-30 grayscale" : "opacity-30 bg-slate-200 text-slate-400";
+                                                                }
+                                                                
+                                                                return (
+                                                                    <div key={idx} className="space-y-2 text-left">
+                                                                        <button disabled={isRevealed} onClick={() => handleQuizAnswer(q.id, idx)} className={`w-full text-left p-5 rounded-2xl border transition-all flex items-start gap-4 group ${btnClass}`}>
+                                                                            <span className={`w-8 h-8 rounded-lg flex items-center justify-center font-black shrink-0 ${isSelected ? (isDarkMode ? 'bg-white text-black' : 'bg-slate-900 text-white') : (isDarkMode ? 'bg-white/10 text-blue-400' : 'bg-slate-200 text-blue-600')}`}>
+                                                                                {opt.label}
+                                                                            </span>
+                                                                            <span className="font-semibold text-base sm:text-lg leading-snug">{opt.text}</span>
+                                                                        </button>
+                                                                        
+                                                                        {isRevealed && (
+                                                                            <div className="animate-in slide-in-from-top-2 duration-300">
+                                                                                {isCorrect && (
+                                                                                    <div className="mt-2 p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-left">
+                                                                                        <div className="flex items-center gap-2 mb-2 text-current font-black"><span className="text-emerald-400">✅ {isEn ? "Correct Answer Logic" : "正確答案解析"}</span></div>
+                                                                                        <p className={`text-sm sm:text-base opacity-95 leading-relaxed italic transition-colors duration-700 ${!isDarkMode && 'text-slate-800'}`}>{opt.expl}</p>
+                                                                                    </div>
+                                                                                )}
+                                                                                {isSelected && !isCorrect && (
+                                                                                    <div className="mt-2 p-6 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-left">
+                                                                                        <div className="flex items-center gap-2 mb-2 text-current font-black"><span className="text-rose-400">❌ {isEn ? "Your Choice Analysis" : "您的選項解析"}</span></div>
+                                                                                        <p className={`text-sm sm:text-base opacity-95 leading-relaxed italic transition-colors duration-700 ${!isDarkMode && 'text-slate-800'}`}>{opt.expl}</p>
+                                                                                    </div>
+                                                                                )}
                                                                             </div>
                                                                         )}
                                                                     </div>
-                                                                )}
-                                                            </div>
-                                                        );
-                                                    })}
-                                                </div>
+                                                                );
+                                                            })}
+                                                        </div>
+                                                    </div>
+                                                ))}
                                             </div>
-                                        ))}
-                                    </div>
-                                    <div className="mt-16 text-center">
-                                        <button onClick={nextQuizPage} className="px-12 py-5 rounded-full bg-gradient-to-r from-indigo-600 to-blue-600 font-black uppercase tracking-[0.2em] shadow-2xl hover:scale-105 active:scale-95 transition-all flex items-center gap-4 mx-auto group text-white">
-                                            {isEn ? "Continue Challenge" : "繼續挑戰題目"} <ChevronRight className="group-hover:translate-x-1 transition-transform" />
-                                        </button>
-                                    </div>
+                                            <div className="mt-16 text-center">
+                                                <button onClick={nextQuizPage} className="px-12 py-5 rounded-full bg-gradient-to-r from-indigo-600 to-blue-600 font-black uppercase tracking-[0.2em] shadow-2xl hover:scale-105 active:scale-95 transition-all flex items-center gap-4 mx-auto group text-white">
+                                                    {quizPage === 2 ? currentUI.quizFinish : (isEn ? "Continue Challenge" : "繼續挑戰題目")} <ChevronRight className="group-hover:translate-x-1 transition-transform" />
+                                                </button>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         )}
