@@ -87,10 +87,12 @@
 
         const Icons = {
             Globe: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>,
+            Earth: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21.54 15H17a2 2 0 0 0-2 2v4.54"/><path d="M7 3.34V5a3 3 0 0 0 3 3v0a2 2 0 0 1 2 2v0c0 1.1.9 2 2 2v0a2 2 0 0 0 2-2v0c0-1.1.9-2 2-2h3.17"/><path d="M11 21.95V18a2 2 0 0 0-2-2v0a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"/><circle cx="12" cy="12" r="10"/></svg>,
             Sun: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>,
             Moon: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>,
             Languages: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>,
             ChevronRight: ({size=20, className=""}) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="9 18 15 12 9 6"/></svg>,
+            ChevronDown: ({size=20, className=""}) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="6 9 12 15 18 9"/></svg>,
             Book: () => <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>,
             Help: () => <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>,
             ArrowLeft: ({size=20}) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>,
@@ -98,34 +100,62 @@
             X: () => <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>,
             Clock: () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
             Users: () => <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
-            Play: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>,
+            Play: ({size=24, className=""}) => <svg width={size} height={size} viewBox="0 0 24 24" fill="white" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="5 3 19 12 5 21 5 3"/></svg>,
             External: ({size=12}) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>,
             Target: ({size=40}) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>,
             Graduation: ({size=40}) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2.2 3 6 3s6-1 6-3v-5"/></svg>,
             Sparkles: ({size=40}) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3 1.912 5.813a2 2 0 0 0 1.275 1.275L21 12l-5.813 1.912a2 2 0 0 0-1.275 1.275L12 21l-1.912-5.813a2 2 0 0 0-1.275-1.275L3 12l5.813-1.912a2 2 0 0 0 1.275-1.275L12 3Z"/></svg>,
-            MousePointer: ({className=""}) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/><path d="m13 13 6 6"/></svg>
+            MousePointer: ({className=""}) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/><path d="m13 13 6 6"/></svg>,
+            Youtube: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21.582 6.186a2.66 2.66 0 0 0-1.874-1.885C17.962 3.84 12 3.84 12 3.84s-5.962 0-7.708.461a2.66 2.66 0 0 0-1.874 1.885C1.962 7.94 1.962 12 1.962 12s0 4.06.456 5.814a2.66 2.66 0 0 0 1.874 1.885c1.746.461 7.708.461 7.708.461s5.962 0 7.708-.461a2.66 2.66 0 0 0 1.874-1.885C22.038 16.06 22.038 12 22.038 12s0-4.06-.456-5.814zM9.962 15.48V8.52l6.538 3.48-6.538 3.48z"/></svg>,
+            Mail: ({size=20, className=""}) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         };
 
         const allLectures = [
-            { id: 1, part: 1, title_en: "LN1: Strategy Basics & Governance", title_zh: "LN1: 策略基礎與公司治理", sub_en: "Foundations & Governance.", color: "from-blue-600 to-indigo-500" },
-            { id: 2, part: 1, title_en: "LN2: VPC Framework & Business Model", title_zh: "LN2: VPC 架構與商業模式", sub_en: "Value creation & capture.", color: "from-cyan-600 to-blue-500" },
-            { id: 3, part: 1, title_en: "LN3: Industry Analysis", title_zh: "LN3: 總體環境與產業分析", sub_en: "PESTEL & 5 Forces.", color: "from-indigo-600 to-purple-500" },
-            { id: 4, part: 1, title_en: "LN4: Competitive Dynamics", title_zh: "LN4: 競爭分析與競合動態", sub_en: "AMC & Co-opetition.", color: "from-blue-500 to-teal-400" },
-            { id: 5, part: 1, title_en: "LN5: RBV & Value Chain", title_zh: "LN5: 內部評估：價值鏈與資源觀點", sub_en: "VRIO & Activities.", color: "from-emerald-600 to-cyan-500" },
-            { id: 6, part: 1, title_en: "LN6: IC & Capabilities", title_zh: "LN6: 智慧資本與動態能力", sub_en: "Dynamic competencies.", color: "from-purple-600 to-fuchsia-500" },
-            { id: 7, part: 1, title_en: "LN7: Generic Strategies", title_zh: "LN7: 事業策略與競爭優勢", sub_en: "Porter's Positioning.", color: "from-blue-700 to-indigo-600" },
-            { id: 8, part: 1, title_en: "LN8: Management of Tech", title_zh: "LN8: 科技管理與創新創業", sub_en: "Innovation & S-Curves.", color: "from-orange-600 to-red-500" },
-            { id: 9, part: 2, title_en: "LN9: Vertical Integration", title_zh: "LN9: 集團策略：垂直整合", sub_en: "Boundary choices.", color: "from-rose-600 to-pink-500" },
-            { id: 10, part: 2, title_en: "LN10: Diversification", title_zh: "LN10: 集團策略：水平多角化", sub_en: "Synergy & Portfolio.", color: "from-pink-600 to-orange-500" },
-            { id: 11, part: 2, title_en: "LN11: Global Expansion", title_zh: "LN11: 集團策略：地理擴張", sub_en: "Modes & CAGE.", color: "from-amber-600 to-orange-500" },
-            { id: 12, part: 2, title_en: "LN12: Alliances & M&A", title_zh: "LN12: 策略聯盟與併購", sub_en: "Managing Growth.", color: "from-red-600 to-rose-500" },
+            { id: 1, part: 1, title_en: "LN1: The Basics of Strategy & Corporate Governance", title_zh: "LN1: 策略基礎與公司治理", quote_en: "Foundations & Governance.", quote_zh: "策略基礎與公司治理。", tag_en: "STRATEGY TRIPOD", tag_zh: "策略金三角", color: "from-blue-600 to-indigo-500" },
+            { id: 2, part: 1, title_en: "LN2: VPC Framework & Business Model", title_zh: "LN2: VPC 架構與商業模式", quote_en: "Creating and appropriating value.", quote_zh: "商業模式的價值創造與獲取。", tag_en: "VPC FRAMEWORK", tag_zh: "VPC 架構", color: "from-cyan-600 to-blue-500" },
+            { id: 3, part: 1, title_en: "LN3: The General Environment & Industry Analysis", title_zh: "LN3: 總體環境與產業分析", quote_en: "Decoding industry profitability.", quote_zh: "解碼產業結構與獲利潛力。", tag_en: "PESTEL & FIVE FORCES", tag_zh: "PESTEL 與五力分析", color: "from-indigo-600 to-purple-500" },
+            { id: 4, part: 1, title_en: "LN4: Competitive Analysis & Co-opetitive Dynamics", title_zh: "LN4: 競爭分析與競合動態", quote_en: "Business is not a zero-sum game.", quote_zh: "商業並非零和遊戲。", tag_en: "CO-OPETITION & AMC", tag_zh: "競合與 AMC 模式", color: "from-blue-500 to-teal-400" },
+            { id: 5, part: 1, title_en: "LN5: Internal Appraisal: Value Chain Analysis & RBV", title_zh: "LN5: 內部評估：價值鏈與資源觀點", quote_en: "Securing advantage through resources.", quote_zh: "透過異質資源極大化競爭優勢。", tag_en: "RESOURCE-BASED VIEW", tag_zh: "資源基礎觀點 (RBV)", color: "from-emerald-600 to-cyan-500" },
+            { id: 6, part: 1, title_en: "LN6: Internal Appraisal: Intellectual Capital & Dynamic Capabilities", title_zh: "LN6: 智慧資本與動態能力", quote_en: "Adapting to a changing landscape.", quote_zh: "適應快速變動的動態競爭環境。", tag_en: "DYNAMIC CAPABILITIES", tag_zh: "動態能力與核心能耐", color: "from-purple-600 to-fuchsia-500" },
+            { id: 7, part: 1, title_en: "LN7: Competitive Advantages: Differentiation, Cost Leadership & Focus", title_zh: "LN7: 事業策略與競爭優勢", quote_en: "Positioning for competitive advantage.", quote_zh: "定位你的專屬競爭優勢。", tag_en: "GENERIC STRATEGIES", tag_zh: "一般性策略", color: "from-blue-700 to-indigo-600" },
+            { id: 8, part: 1, title_en: "LN8: Management of Technology, Innovation and Entrepreneurship", title_zh: "LN8: 科技管理與創新創業", quote_en: "Riding the wave of tech change.", quote_zh: "駕馭技術變革的創新浪潮。", tag_en: "STRATEGIC INNOVATION", tag_zh: "科技管理與策略創新", color: "from-orange-600 to-red-500" },
+            { id: 9, part: 2, title_en: "LN9: Corporate Strategy: Vertical Integration", title_zh: "LN9: 集團策略：垂直整合", quote_en: "Defining the vertical scope.", quote_zh: "定義企業價值鏈的垂直邊界。", tag_en: "VERTICAL INTEGRATION", tag_zh: "垂直整合與交易成本", color: "from-rose-600 to-pink-500" },
+            { id: 10, part: 2, title_en: "LN10: Corporate Strategy: Horizontal Diversification", title_zh: "LN10: 集團策略：水平多角化", quote_en: "Expanding across product markets.", quote_zh: "跨越產品市場的集團版圖擴張。", tag_en: "HORIZONTAL DIVERSIFICATION", tag_zh: "水平多角化與範疇經濟", color: "from-pink-600 to-orange-500" },
+            { id: 11, part: 2, title_en: "LN11: Corporate Strategy: Geographical Expansion", title_zh: "LN11: 集團策略：地理擴張", quote_en: "Navigating the global market.", quote_zh: "航向無國界的全球市場。", tag_en: "GEOGRAPHICAL EXPANSION", tag_zh: "地理擴張與全球化", color: "from-amber-600 to-orange-500" },
+            { id: 12, part: 2, title_en: "LN12: Strategic Alliances and Mergers & Acquisitions", title_zh: "LN12: 策略聯盟與併購", quote_en: "Growing through external partnerships.", quote_zh: "透過外部夥伴關係加速成長。", tag_en: "ALLIANCES & M&A", tag_zh: "策略聯盟與併購", color: "from-red-600 to-rose-500" },
         ];
 
         const members = [
-            { id: 1, name: "Tina Lin", dept: "IBS2", about: ["Management學院畢業班系學會會長", "2025 'UI GreenMetric World University Rankings' 成員", "南投山區苗圃有機生態農場農夫(生菜種植)"], initials: "T" },
-            { id: 2, name: "Jeremy Wang", dept: "IPCM3", about: ["管理學院學士班前系學會會長", "國際企業學系羅世民教授全英課程教學助理", "南投山區苗圃有機生態農場農夫(生菜種植)"], initials: "J" },
-            { id: 3, name: "Jenna Chang", dept: "IBS4", about: ["Senior undergraduate at IBS.", "Researcher in Global Value Chain.", "Experienced in MNC case analysis."], initials: "J" },
-            { id: 4, name: "Arthur Wang", dept: "DICE1", about: ["AI Integration Lead.", "Full-stack strategy portal developer.", "Passion for GenAI productivity."], initials: "A" }
+            { 
+                id: 1, 
+                initials: "J", 
+                img: "https://drive.google.com/thumbnail?id=14MlGCV7o2jCmhLGQkzCfUWNhjWUQq_EL&sz=w1000",
+                youtubeId: "RokMKyqjtGE",
+                ytThumbnail: "https://drive.google.com/thumbnail?id=16PjcKLNTgQ0KT0zqdOnzQK4fvmWbDVav&sz=w1000",
+                email: "hank940121@gmail.com",
+                en: { name: "Jeremy Wang", dept: "IPCM3 Senior TA/Web Developer (AI-assisted)", about: ["Former President of College of Management Student Association", "Teaching Assistant for Prof. Shih-Min Lo (English-taught PM & Strategy courses)", "Farmer at Nanping Mountain Organic Farm (Lettuce)"] },
+                zh: { name: "王毓翰", dept: "管學三 資深助教/網頁開發者（AI協作）", about: ["管理學院學士班前系學會長", "國際企業學系駱世民教授課程教學助理（全英授課，產品經理與策略管理相關課程）", "南平山道田有機生態農場農夫（生菜種植）"] }
+            },
+            { 
+                id: 2, 
+                initials: "T", 
+                img: "https://drive.google.com/thumbnail?id=13F_2Ags3tBefgHh5n3j25Wvu0jnZCKQH&sz=w1000",
+                youtubeId: "fy65dYkplXI",
+                ytThumbnail: "https://drive.google.com/thumbnail?id=1KXq6Z2NHkF_xfnm09jzbhZcAc5eXJ6HC&sz=w1000",
+                email: "s112212015@mail1.ncnu.edu.tw",
+                en: { name: "Tina Wang", dept: "IBS3 Senior TA", about: ["I enjoy working with numbers, but not manipulating people.", "Previously taught elementary mathematics at the Boyo Foundation."] },
+                zh: { name: "王怡婷", dept: "國企三 資深助教", about: ["喜歡計算不喜歡算計", "曾在博幼基金會教國小數學"] }
+            },
+            { 
+                id: 3, 
+                initials: "T", 
+                img: "https://drive.google.com/thumbnail?id=1BVEXd-CL8ugjGRJNx-DNgF5NoYLl46Zs&sz=w1000",
+                youtubeId: "dTYX7XhcCyc",
+                ytThumbnail: "https://drive.google.com/thumbnail?id=1fv4Ui1adZnNdryelWQVyBKMSIyX732WT&sz=w1000",
+                email: "s113212016@mail1.ncnu.edu.tw",
+                en: { name: "Tina Lin", dept: "IBS2 TA", about: ["Vice President of IBS Student Association, NCNU", "Volunteer for 2025 'UI GreenMetric World University Rankings' Launch", "General Coordinator of 9th Taiwan Youth Hackathon"] },
+                zh: { name: "林庭伃", dept: "國企二 助教", about: ["暨大國際企業學系系學會副會長", "2025「UI GreenMetric World University Rankings」全球綠色大學排名發佈會志工", "第九屆台灣青年黑克松總召"] }
+            }
         ];
 
         const quizData = [
@@ -157,13 +187,13 @@
                 icon: <Icons.Graduation size={40} />, 
                 en: { 
                     title: "Section 2: Teaching Methodology", 
-                    subtitle: "Flipped Classroom & Action Learning", 
-                    content: "We adopt a blended teaching approach that puts you in the driver's seat. Moving away from traditional lectures, this course utilizes:\n\n• Flipped Classroom: Students engage with core materials and self-study notes before class, allowing class time to be dedicated to deep discussion and analysis.\n• Collaborative Mind-Mapping: Working in study groups, students utilize Coggle to structure their analysis, visualize strategic concepts, and present their findings in class.\n• Interactive Learning Webpage Competition: Build an Interactive Learning Webpage as a Minimum Viable Product (MVP) integrating LN1-LN12 as POC verification." 
+                    subtitle: "Flipped Classroom & Problem-Based Learning (PBL)", 
+                    content: "We adopt a blended teaching approach that puts you in the driver's seat. Moving away from traditional lectures, this course utilizes:\n\n• Flipped Classroom: Students engage with core materials and self-study notes before class, allowing class time to be dedicated to deep discussion and analysis.\n• Collaborative Mind-Mapping: Working in study groups, students utilize Coggle to structure their analysis, visualize strategic concepts, and present their findings in class.\n• SPA Webpage Competition: Apply product manager's thinking to build an Interactive Learning Webpage as a Minimum Viable Product (MVP). Presented as a Single-Page Application (SPA), this project integrates strategic analysis (LN1-LN12) as a Proof of Concept (POC)." 
                 }, 
                 zh: { 
                     title: "Section 2: 教學方法", 
-                    subtitle: "翻轉教室與問題導向學習 PBL", 
-                    content: "我們採用混合式教學法，讓您成為學習的駕駛員。有別於傳統講授，本課程將運用：\n\n• 翻轉教室：學生在課前完成自學筆記，課堂專注於深度討論與分析。\n• 協作心智圖：運用線上工具 Coggle 將策略分析結構化與概念視覺化，並在課堂上進行發表。\n• 互動式學習網頁專題競賽：打造網頁作為 MVP。此專案將策略分析 (LN1-LN12)，以作為您學習成果的概念驗證 (POC)。" 
+                    subtitle: "翻轉教室與問題導向學習 (PBL)", 
+                    content: "我們採用混合式教學法，讓您成為學習的駕駛員。有別於傳統講授，本課程將運用：\n\n• 翻轉教室： 學生在課前完成自學筆記，課堂專注於深度討論與分析。\n• 協作心智圖： 運用線上工具 Coggle 將策略分析結構化與概念視覺化，並在課堂上進行發表。\n• SPA 網頁專題競賽： 應用產品經理思維，打造互動式學習網頁作為 MVP。此專案將以 單頁應用程式 (SPA) 的形式呈現，整合策略分析 (LN1-LN12)，作為您學習成果的概念驗證 (POC)。" 
                 } 
             },
             { 
@@ -172,13 +202,52 @@
                 en: { 
                     title: "Section 3: AI & Tech Integration", 
                     subtitle: "Empowered by Generative AI", 
-                    content: "This course mandates the integration of cutting-edge AI tools to revolutionize learning and productivity. We leverage AI for Initiation-Response-Feedback (IRF) and enhancing Critical Thinking.\n\n• Core AI Tools: ChatGPT, Claude, Gemini, and Poe for strategic analysis.\n• Multimedia & Productivity: NotebookLM, D-ID, Otter, and Stable Diffusion.\n• Smart Prompting: Master prompt engineering techniques (e.g., CRF framework) effectively." 
+                    content: "This course mandates the integration of cutting-edge AI tools to revolutionize learning and productivity. We leverage AI for Initiation-Response-Feedback (IRF), Think-Pair-Share (TPS), and enhancing Critical Thinking.\n\n• Core AI Tools: ChatGPT, Claude, Gemini, Poe, and emerging Agentic AI for strategic brainstorming and analysis.\n• Multimedia & Productivity: NotebookLM, D-ID, ElevenLabs, Otter, NaturalReader, Gamma/Napkin, Mentimeter, and Stable Diffusion for Brief Interactive Tasks (BITs).\n• Smart Prompting: Master prompt engineering techniques (e.g., CRF framework) to collaborate effectively with AI." 
                 }, 
                 zh: { 
                     title: "Section 3: AI 與科技整合", 
                     subtitle: "生成式 AI 賦能學習", 
-                    content: "生成式 AI 賦能學習\n本課程強制整合具尖端性的 AI 工具，以革新學習體驗與生產力。我們運用 AI 不僅是為了尋找答案，更是為了促進：啟動-回應-反饋 (IRF) 循環並增強批判性思考。\n\n• 核心 AI 工具：運用 ChatGPT、Claude、Gemini 與 Poe 進行策略腦力激盪與分析。\n• 多媒體與生產力：使用 NotebookLM(語音摘要)、D-ID(虛擬人像)、Stable Diffusion 製作任務。\n• 智慧提示工程：掌握提示工程技巧(如 CRF 架構)，學會與 AI 高效協作。" 
+                    content: "本課程強制整合具尖端性的 AI 工具，以革新學習體驗與生產力。我們運用 AI 不僅是為尋找答案，更是為了促進 啟動-回應-反饋 (IRF)、思考-配對-分享 (TPS) 循環並增強批判性思考。\n\n• 核心 AI 工具： 運用 ChatGPT、Claude、Gemini、Poe 與最新的 Agentic AI 進行策略腦力激盪。\n• 多媒體與生產力工具： 使用 NotebookLM、D-ID、ElevenLabs、Otter(轉錄)、NaturalReader、Gamma/Napkin、Mentimeter 與 Stable Diffusion 製作互動任務 (BITs)。\n• 智慧提示工程： 掌握提示工程技巧（如 CRF 架構），學會與 AI 高效協作。" 
                 } 
+            }
+        ];
+
+        // 全新加入：學習指引的流程資料
+        const guideSteps = [
+            {
+                id: 1,
+                en: { title: "Step 1 | Read / Watch Moodle Materials", desc: "Build a solid foundation in strategic theories." },
+                zh: { title: "第一步｜閱讀 / 觀看 Moodle 教材", desc: "扎實奠定您的策略理論基礎。" }
+            },
+            {
+                id: 2,
+                en: { title: "Step 2 | Overview", desc: "Grasp the big picture. Clarify the position of each module in business operations, connect fragmented knowledge, and identify the learning objectives." },
+                zh: { title: "第二步｜Overview 全局理解", desc: "綜觀策略全貌。釐清各單元在企業運作中的定位，連結分散的知識點，並從中掌握該教材之學習目標。" }
+            },
+            {
+                id: 3,
+                en: { title: "Step 3 | Concept Lab", desc: "Deep dive into key frameworks to test if you have truly mastered the essence of the chapter." },
+                zh: { title: "第三步｜Concept Lab 概念拆解", desc: "深度剖析關鍵架構，檢驗您是否真正掌握該章節的核心精髓。" }
+            },
+            {
+                id: 4,
+                en: { title: "Step 4 | Strategy Pitfalls", desc: "Identify common business myths and correct flawed strategic intuition and misconceptions." },
+                zh: { title: "第四步｜Strategy Pitfalls 翻轉直覺", desc: "辨識常見的商業迷思，修正錯誤的策略直覺與概念理解。" }
+            },
+            {
+                id: 5,
+                en: { title: "Step 5 | Decision Check", desc: "Validate your grasp of strategic knowledge through targeted conceptual multiple-choice questions." },
+                zh: { title: "第五步｜Decision Check 觀念檢核", desc: "透過精煉的概念選擇題，快速測驗並驗證您對策略知識的吸收程度。" }
+            },
+            {
+                id: 6,
+                en: { title: "Step 6 | Collaborate", desc: "Bring your validated insights to your study group. Synthesize ideas and use online collaborative tools to structure and visualize the Lecture Notes." },
+                zh: { title: "第六步｜團隊協作", desc: "將您個人驗證過的觀點帶入小組。匯聚團隊想法，並運用線上工具將課程內容結構化與視覺化。" }
+            },
+            {
+                id: 7,
+                en: { title: "Step 7 | Present & Reflect", desc: "Present your findings in class, engage in peer Q&A, and discuss deeply with the professor. Reflect on the feedback to refine your intuition and cross-reference with the webpage’s core concepts." },
+                zh: { title: "第七步｜發表與反思", desc: "在課堂發表成果，參與跨組問答與教授的深度對話。吸收反饋進行反思，並將實戰討論與本平台的核心教材進行最終的交叉驗證。" }
             }
         ];
 
@@ -186,27 +255,30 @@
             en: {
                 logo: "SMMC‐EMI", header: "Global Boundary Spanner: Strategy Without Borders", subHeader: "Believe in Persistence, Build Resilience, and Be the Driver of Your Strategy",
                 introTitle: "Course Introduction", introSubtitle: "Future-Ready Strategy: AI-Empowered & Action-Oriented", introDesc: "Step into the role of a global strategist. This capstone course integrates Generative AI tools with the Strategy Tripod framework to navigate the complexities of MNCs. Click to explore detailed vision and methods.",
-                menuHome: "HOME", menuIntro: "COURSE INTRODUCTION", menuTeam: "TEAM", menuBusiness: "BUSINESS STRATEGY", menuCorporate: "CORPORATE STRATEGY",
+                menuHome: "HOME", menuIntro: "COURSE INTRODUCTION", menuTeam: "MEET OUR TEAM", menuBusiness: "BUSINESS STRATEGY", menuCorporate: "CORPORATE STRATEGY",
+                guideTitle: "Learning Guide", guideSubtitle: "A Strategic Validation Engine", guideDesc: "This portal is not a static summary page; it is a dynamic Strategic Thinking Validation System. Designed to challenge your understanding after engaging with the Moodle materials, it guides you through reconstructing the big picture, decoding core theories, correcting flawed intuition, and simulating real-world strategic decisions.",
+                guidePageDesc: "How to Use This Portal\nThis platform is designed to reinforce and challenge your understanding of strategic concepts after completing your Moodle pre-class studies.",
                 part1Header: "Business Strategy (LN1-8)", part1CardLabel: "Part 1:", part1CardTitle: "Business Strategy",
                 part1CardDesc: "Business strategy focuses on how to compete within a given product market or industry to establish a competitive advantage.",
-                part1SyllabusDesc: "Business Strategy focuses on the fundamental question of how to compete within a specific market to establish and sustain a competitive advantage.",
+                part1SyllabusDesc: "Business Strategy focuses on the fundamental question of how to compete within a specific market to establish and sustain a competitive advantage. By analyzing external industry dynamics and internal core competencies, firms can craft robust business models to effectively create and appropriate value.",
                 part2Header: "Corporate Strategy (LN9-12)", part2CardLabel: "Part 2:", part2CardTitle: "Corporate Strategy",
                 part2CardDesc: "Corporate strategy determines where to compete to define the multinational firm's overall growth scope.",
-                part2SyllabusDesc: "Corporate Strategy addresses the critical question of where to compete by determining the overall growth scope of a multinational firm.",
+                part2SyllabusDesc: "Corporate Strategy addresses the critical question of where to compete by determining the overall growth scope of a multinational firm. It explores how companies expand their boundaries through vertical integration, horizontal diversification, and global expansion, utilizing methods like strategic alliances and M&A.",
                 teamHeader: "Meet Our Team", back: "Back to Home", enter: "VIEW LECTURES", statusComing: "Coming soon",
                 footerCourse: "Strategic Management of Multinational Corporations", footerUpdate: "Last Updated: 2026-02-20 | v7.7.1", footerInstructor: "Instructor: Prof. Shihmin Lo", footerDept: "Dept. of International Business Studies (IBS)",
-                guideStep1: "Strategy Map: Master logic.", guideStep2: "Concept Lab: Theory analysis."
             },
             zh: {
                 logo: "國策管‐全英授課", header: "全球跨界者：無國界策略管理", subHeader: "堅信毅力、建立韌性，並成為策略的驅動者",
                 introTitle: "課程簡介", introSubtitle: "未來就緒的策略思維：AI 賦能與行動導向", introDesc: "踏入全球策略家的角色。本總結性課程結合具前瞻性的生成式 AI 工具與策略三腳架架構，帶領您駕馭挑戰。點擊探索願景細節。",
-                menuHome: "首頁", menuIntro: "課程簡介", menuTeam: "團隊介紹", menuBusiness: "事業策略 Business Strategy", menuCorporate: "集團策略 Corporate Strategy",
+                menuHome: "首頁", menuIntro: "課程簡介", menuTeam: "團隊介紹", menuBusiness: "事業策略", menuCorporate: "集團策略",
+                guideTitle: "學習指引", guideSubtitle: "專屬你的策略思維驗證引擎", guideDesc: <span>這不是靜態的摘要頁面，而是一套動態的<strong className="font-black">「策略思維驗證系統」</strong>。本平台旨在您完成 Moodle 的課前學習後，挑戰並重塑您的認知；帶領您從建構策略全局、拆解核心理論、翻轉錯誤直覺，一路邁向真實情境的決策模擬。</span>,
+                guidePageDesc: "使用方式說明\n本平台旨在於您完成 Moodle 課前預習後，進一步強化並挑戰您對策略概念的理解。",
                 part1Header: "事業策略 Business Strategy (LN1-8)", part1CardLabel: "第一部分：", part1CardTitle: "事業策略",
-                part1CardDesc: "事業策略聚焦於在特定市場中「如何競爭 (How to compete)」，以建立並維持企業的競爭優勢。",
-                part1SyllabusDesc: "事業策略聚焦於「如何競爭」的根本問題，旨在特定市場中建立並維持競爭優勢。",
+                part1CardDesc: <span>事業策略聚焦於在特定市場中<strong className="font-black">「如何競爭 (How to compete)」</strong>，以建立並維持企業的競爭優勢。</span>,
+                part1SyllabusDesc: "事業策略聚焦於「如何競爭」的根本問題，旨在特定市場中建立並維持競爭優勢。透過分析外部產業動態與內部核心能耐，企業能打造出穩健的商業模式，有效地創造與獲取價值。",
                 part2Header: "集團策略 Corporate Strategy (LN9-12)", part2CardLabel: "第二部分：", part2CardTitle: "集團策略",
-                part2CardDesc: "集團策略旨在探討「在哪裡競爭 (Where to compete)」，藉此決定跨國企業整體的成長範疇。",
-                part2SyllabusDesc: "集團策略探討「在哪裡競爭」的關鍵難題，藉此決定跨國企業整體的成長範疇。",
+                part2CardDesc: <span>集團策略旨在探討<strong className="font-black">「在哪裡競爭 (Where to compete)」</strong>，藉此決定跨國企業整體的成長範疇。</span>,
+                part2SyllabusDesc: "集團策略則探討「在哪裡競爭」的關鍵難題，藉此決定跨國企業整體的成長範疇。它剖析企業如何透過垂直整合、水平多角化與全球擴張來拓展版圖，並運用策略聯盟與併購等手段達成目標。",
                 teamHeader: "團隊介紹", back: "返回首頁", enter: "進入講義清單", statusComing: "即將推出",
                 footerCourse: "國際策略管理 (Strategic Management of MNCs)", footerUpdate: "最後更新: 2026-02-20 | v7.7.1", footerInstructor: "授課教師: Prof. Shihmin Lo", footerDept: "國企系 IBS"
             }
@@ -222,6 +294,7 @@
             const [activeModule, setActiveModule] = useState(null);
             const [quizPage, setQuizPage] = useState(0); 
             const [userAnswers, setUserAnswers] = useState({}); 
+            const [expandedStep, setExpandedStep] = useState(1); // 學習指引的預設展開步驟
 
             const isEn = lang === 'en';
             const currentUI = uiText[lang];
@@ -232,62 +305,92 @@
             const nextQuizPage = () => { setUserAnswers({}); setQuizPage((prev) => (prev + 1) % 3); };
             const displayedQuestions = quizData.slice(quizPage * 2, quizPage * 2 + 2);
 
-            const { ChevronRight, X, Menu, Languages, Sun, Moon, Globe, Book, Users, Help, ArrowLeft, Clock, Play, External, Target, Graduation, Sparkles, MousePointer } = Icons;
+            const { ChevronRight, ChevronDown, X, Menu, Languages, Sun, Moon, Globe, Earth, Book, Users, Help, ArrowLeft, Clock, Play, External, Target, Graduation, Sparkles, MousePointer, Youtube, Mail } = Icons;
 
             return (
                 <div className={`min-h-screen transition-colors duration-700 flex flex-col ${isDarkMode ? 'bg-[#050507] text-white' : 'bg-slate-50 text-slate-900'}`}>
                     
+                    {/* 全域背景點擊遮罩 */}
+                    {isMenuOpen && (
+                        <div className="fixed inset-0 z-[90] cursor-default bg-black/5" onClick={() => { setIsMenuOpen(false); setExpandedMenu(null); }}></div>
+                    )}
+                    
                     {/* --- Navbar --- */}
-                    <nav className={`fixed top-0 w-full z-[100] glass-nav border-b h-24 ${isDarkMode ? 'border-white/10 bg-black/40' : 'border-black/10 bg-white/60'}`}>
+                    <nav className={`fixed top-0 w-full z-[100] glass-nav border-b h-24 transition-colors duration-700 ${isDarkMode ? 'border-white/10 bg-black/40' : 'border-black/10 bg-white/60'}`}>
                         <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between text-current">
                             <div className="flex items-center gap-4 cursor-pointer group" onClick={() => handleNavigate('home')}>
                                 <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-lg">
-                                    <Globe />
+                                    <Earth />
                                 </div>
                                 <span className={`font-black text-xl sm:text-3xl tracking-tighter uppercase leading-none`}>{currentUI.logo}</span>
                             </div>
 
                             <div className="flex items-center gap-3 relative text-current">
-                                <button onClick={() => setLang(isEn ? 'zh' : 'en')} className={`p-3 rounded-xl border border-white/10 bg-white/5 active:scale-90 transition-all ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}><Languages /></button>
-                                <button onClick={() => setIsDarkMode(!isDarkMode)} className={`p-3 rounded-xl border border-white/10 bg-white/5 active:scale-90 transition-all ${isDarkMode ? 'text-yellow-400' : 'text-slate-600'}`}>{isDarkMode ? <Sun /> : <Moon />}</button>
-                                <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={`p-3 rounded-xl border border-white/10 bg-white/5 active:scale-90 transition-all ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>{isMenuOpen ? <X /> : <Menu />}</button>
+                                <button onClick={() => setLang(isEn ? 'zh' : 'en')} className={`p-3 rounded-xl border transition-all duration-700 active:scale-90 ${isDarkMode ? 'border-white/10 bg-white/5 text-blue-400' : 'border-black/5 bg-slate-100 text-blue-600'}`}><Languages /></button>
+                                <button onClick={() => setIsDarkMode(!isDarkMode)} className={`p-3 rounded-xl border transition-all duration-700 active:scale-90 ${isDarkMode ? 'border-white/10 bg-white/5 text-yellow-400' : 'border-black/5 bg-slate-100 text-slate-600'}`}>{isDarkMode ? <Sun /> : <Moon />}</button>
+                                <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={`p-3 rounded-xl border transition-all duration-700 active:scale-90 ${isDarkMode ? 'border-white/10 bg-white/5 text-blue-400' : 'border-black/5 bg-slate-100 text-blue-600'}`}>{isMenuOpen ? <X /> : <Menu />}</button>
                                 
                                 {isMenuOpen && (
-                                    <div className={`absolute top-20 right-0 w-80 border rounded-[2.5rem] p-8 shadow-2xl menu-animate z-[100] ${isDarkMode ? 'bg-black/95 border-white/10 text-white' : 'bg-white border-black/10 text-slate-900'}`}>
-                                        <div className="space-y-6 text-left max-h-[70vh] overflow-y-auto no-scrollbar text-current">
-                                            <button onClick={() => handleNavigate('home')} className="w-full text-left font-black text-xl tracking-widest hover:text-blue-500 uppercase">HOME</button>
-                                            <button onClick={() => { setView('introDetail'); setIsMenuOpen(false); }} className="w-full text-left font-black text-xl tracking-widest hover:text-blue-500 uppercase">{currentUI.menuIntro}</button>
-                                            <button onClick={() => handleNavigate('team')} className="w-full text-left font-black text-xl tracking-widest hover:text-blue-500 uppercase">{currentUI.menuTeam}</button>
+                                    <div className={`absolute top-20 right-0 w-[85vw] max-w-sm border rounded-[2.5rem] p-8 shadow-2xl menu-animate z-[100] transition-colors duration-700 ${isDarkMode ? 'bg-black/95 border-white/10 text-white' : 'bg-white border-black/10 text-slate-900'}`}>
+                                        <div className="space-y-6 text-left max-h-[75vh] overflow-y-auto lg:overflow-visible no-scrollbar text-current">
+                                            <button onClick={() => handleNavigate('home')} className="w-full text-left font-black text-lg sm:text-xl tracking-widest hover:text-blue-500 uppercase">{currentUI.menuHome}</button>
+                                            <button onClick={() => handleNavigate('introDetail')} className="w-full text-left font-black text-lg sm:text-xl tracking-widest hover:text-blue-500 uppercase">{currentUI.menuIntro}</button>
+                                            <button onClick={() => handleNavigate('team')} className="w-full text-left font-black text-lg sm:text-xl tracking-widest hover:text-blue-500 uppercase">{currentUI.menuTeam}</button>
                                             
-                                            {/* Flyout Sub-menu Logic */}
+                                            {/* Business Strategy 子目錄邏輯 */}
                                             <div className="relative group">
-                                                <button onMouseEnter={() => setExpandedMenu('business')} onClick={() => setExpandedMenu(expandedMenu === 'business' ? null : 'business')} className={`w-full text-left font-black text-xl tracking-widest hover:text-blue-500 uppercase flex items-center justify-between`}>
-                                                    {currentUI.menuBusiness} <ChevronRight size={16} className={`lg:hidden transition-transform duration-300 ${expandedMenu === 'business' ? 'rotate-90' : ''}`} />
-                                                </button>
-                                                {expandedMenu === 'business' && (
-                                                    <div onMouseLeave={() => setExpandedMenu(null)} className={`mt-4 lg:mt-0 grid grid-cols-1 gap-1 submenu-animate lg:absolute lg:-left-[290px] lg:top-0 lg:w-72 lg:p-4 lg:rounded-3xl lg:shadow-2xl ${isDarkMode ? 'bg-black/95 border border-white/10 text-white' : 'bg-white border border-slate-200 text-slate-900'}`}>
-                                                        {allLectures.filter(l => l.part === 1).map(l => (
-                                                            <button key={l.id} onClick={() => handleNavigateToLN(l)} className={`text-[11px] font-black hover:text-blue-500 border py-3 px-4 rounded-xl transition-colors uppercase text-left truncate leading-tight ${isDarkMode ? 'text-white/40 border-white/5 hover:bg-white/5' : 'text-slate-600 border-slate-200 hover:bg-slate-50'}`}>
-                                                                {isEn ? l.title_en : l.title_zh}
-                                                            </button>
-                                                        ))}
-                                                    </div>
-                                                )}
+                                                <div className="flex items-center justify-between w-full">
+                                                    <button onClick={() => handleNavigate('part1')} className="text-left font-black text-lg sm:text-xl leading-snug tracking-widest hover:text-blue-500 uppercase flex-grow break-words pr-2 py-2">
+                                                        {currentUI.menuBusiness}
+                                                    </button>
+                                                    <button onClick={(e) => { e.stopPropagation(); setExpandedMenu(expandedMenu === 'business' ? null : 'business'); }} className={`p-3 border rounded-xl lg:hidden active:scale-90 transition-all z-10 duration-700 ${isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-slate-50 border-slate-200 hover:bg-slate-100'}`}>
+                                                        <ChevronRight size={20} className={`transition-transform duration-300 ${expandedMenu === 'business' ? 'rotate-90' : ''}`} />
+                                                    </button>
+                                                </div>
+                                                
+                                                <div className={`
+                                                    submenu-animate
+                                                    ${expandedMenu === 'business' ? 'grid' : 'hidden'} 
+                                                    lg:!hidden lg:group-hover:!grid
+                                                    mt-4 grid-cols-1 gap-1 p-4 rounded-3xl border transition-colors duration-700
+                                                    lg:absolute lg:right-full lg:top-0 lg:mt-0 lg:mr-4 lg:w-72 lg:shadow-2xl z-50
+                                                    ${isDarkMode ? 'bg-black/40 lg:bg-black/95 border-white/10 text-white' : 'bg-slate-50 lg:bg-white border-slate-200 text-slate-900'}
+                                                `}>
+                                                    <div className="hidden lg:block absolute -right-6 top-0 w-6 h-full bg-transparent"></div>
+                                                    {allLectures.filter(l => l.part === 1).map(l => (
+                                                        <button key={l.id} onClick={() => handleNavigateToLN(l)} className={`text-[11px] font-black border py-3 px-4 rounded-xl transition-colors duration-700 uppercase text-left truncate leading-tight ${isDarkMode ? 'text-white/50 border-white/5 hover:bg-white/10 hover:text-blue-400' : 'text-slate-600 border-slate-200 hover:bg-slate-100 hover:text-blue-600'}`}>
+                                                            {isEn ? l.title_en : l.title_zh}
+                                                        </button>
+                                                    ))}
+                                                </div>
                                             </div>
 
+                                            {/* Corporate Strategy 子目錄邏輯 */}
                                             <div className="relative group">
-                                                <button onMouseEnter={() => setExpandedMenu('corporate')} onClick={() => setExpandedMenu(expandedMenu === 'corporate' ? null : 'corporate')} className={`w-full text-left font-black text-xl tracking-widest hover:text-blue-500 uppercase flex items-center justify-between`}>
-                                                    {currentUI.menuCorporate} <ChevronRight size={16} className={`lg:hidden transition-transform duration-300 ${expandedMenu === 'corporate' ? 'rotate-90' : ''}`} />
-                                                </button>
-                                                {expandedMenu === 'corporate' && (
-                                                    <div onMouseLeave={() => setExpandedMenu(null)} className={`mt-4 lg:mt-0 grid grid-cols-1 gap-1 submenu-animate lg:absolute lg:-left-[290px] lg:top-0 lg:w-72 lg:p-4 lg:rounded-3xl lg:shadow-2xl ${isDarkMode ? 'bg-black/95 border border-white/10 text-white' : 'bg-white border border-slate-200 text-slate-900'}`}>
-                                                        {allLectures.filter(l => l.part === 2).map(l => (
-                                                            <button key={l.id} onClick={() => handleNavigateToLN(l)} className={`text-[11px] font-black hover:text-purple-500 border py-3 px-4 rounded-xl transition-colors uppercase text-left truncate leading-tight ${isDarkMode ? 'text-white/40 border-white/5 hover:bg-white/5' : 'text-slate-600 border-slate-200 hover:bg-slate-50'}`}>
-                                                                {isEn ? l.title_en : l.title_zh}
-                                                            </button>
-                                                        ))}
-                                                    </div>
-                                                )}
+                                                <div className="flex items-center justify-between w-full">
+                                                    <button onClick={() => handleNavigate('part2')} className="text-left font-black text-lg sm:text-xl leading-snug tracking-widest hover:text-purple-500 uppercase flex-grow break-words pr-2 py-2">
+                                                        {currentUI.menuCorporate}
+                                                    </button>
+                                                    <button onClick={(e) => { e.stopPropagation(); setExpandedMenu(expandedMenu === 'corporate' ? null : 'corporate'); }} className={`p-3 border rounded-xl lg:hidden active:scale-90 transition-all z-10 duration-700 ${isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-slate-50 border-slate-200 hover:bg-slate-100'}`}>
+                                                        <ChevronRight size={20} className={`transition-transform duration-300 ${expandedMenu === 'corporate' ? 'rotate-90' : ''}`} />
+                                                    </button>
+                                                </div>
+                                                
+                                                <div className={`
+                                                    submenu-animate
+                                                    ${expandedMenu === 'corporate' ? 'grid' : 'hidden'} 
+                                                    lg:!hidden lg:group-hover:!grid
+                                                    mt-4 grid-cols-1 gap-1 p-4 rounded-3xl border transition-colors duration-700
+                                                    lg:absolute lg:right-full lg:top-0 lg:mt-0 lg:mr-4 lg:w-72 lg:shadow-2xl z-50
+                                                    ${isDarkMode ? 'bg-black/40 lg:bg-black/95 border-white/10 text-white' : 'bg-slate-50 lg:bg-white border-slate-200 text-slate-900'}
+                                                `}>
+                                                    <div className="hidden lg:block absolute -right-6 top-0 w-6 h-full bg-transparent"></div>
+                                                    {allLectures.filter(l => l.part === 2).map(l => (
+                                                        <button key={l.id} onClick={() => handleNavigateToLN(l)} className={`text-[11px] font-black border py-3 px-4 rounded-xl transition-colors duration-700 uppercase text-left truncate leading-tight ${isDarkMode ? 'text-white/50 border-white/5 hover:bg-white/10 hover:text-purple-400' : 'text-slate-600 border-slate-200 hover:bg-slate-100 hover:text-purple-600'}`}>
+                                                            {isEn ? l.title_en : l.title_zh}
+                                                        </button>
+                                                    ))}
+                                                </div>
                                             </div>
 
                                             <div className="h-px bg-current opacity-10 my-4"></div>
@@ -299,7 +402,7 @@
                         </div>
                     </nav>
 
-                    <main className="pt-40 pb-24 px-4 sm:px-10 max-w-7xl mx-auto flex-grow w-full overflow-visible">
+                    <main className="pt-40 pb-24 px-4 sm:px-10 max-w-7xl mx-auto flex-grow w-full overflow-x-hidden md:overflow-visible">
                         {view === 'home' && (
                             <div className="animate-in overflow-visible text-center">
                                 <div className="max-w-6xl mx-auto mb-24 overflow-visible px-2 flex flex-col items-center">
@@ -308,66 +411,136 @@
                                             {currentUI.header}
                                         </h1>
                                     </div>
-                                    {/* Centered Hero Subheader */}
-                                    <p className={`text-lg sm:text-2xl font-medium mt-4 text-center max-w-4xl mx-auto ${isDarkMode ? 'text-white/60 italic' : 'text-slate-700 italic'}`}>{currentUI.subHeader}</p>
+                                    <p className={`text-lg sm:text-2xl font-medium mt-4 text-center max-w-4xl mx-auto transition-colors duration-700 ${isDarkMode ? 'text-white/60 italic' : 'text-slate-700 italic'}`}>{currentUI.subHeader}</p>
                                 </div>
 
                                 <div className="space-y-8 mb-24 text-left text-current">
-                                    <div onClick={() => handleNavigate('introDetail')} className={`hover-card group p-10 sm:p-16 rounded-[4rem] border transition-all cursor-pointer relative overflow-visible shadow-2xl ${isDarkMode ? 'bg-blue-600/5 border-white/10 hover:border-blue-500/50' : 'bg-white border-black/5 hover:border-blue-400'}`}>
+                                    <div onClick={() => handleNavigate('introDetail')} className={`hover-card group p-10 sm:p-16 rounded-[4rem] border transition-all duration-700 cursor-pointer relative overflow-visible shadow-2xl ${isDarkMode ? 'bg-blue-600/5 border-white/10 hover:border-blue-500/50' : 'bg-white border-black/5 hover:border-blue-400'}`}>
                                         <div className="flex items-center justify-between mb-8 text-blue-500"><div className="flex items-center gap-6 text-current"><Book /> <h2 className="text-3xl sm:text-5xl font-black tracking-tight">{currentUI.introTitle}</h2></div><MousePointer className="opacity-20 group-hover:opacity-100" /></div>
-                                        <h3 className={`text-lg sm:text-2xl font-black mb-6 italic ${isDarkMode ? 'text-[#00ffff]' : 'text-black font-black'}`}>{currentUI.introSubtitle}</h3>
-                                        <p className={`text-base sm:text-2xl leading-relaxed ${isDarkMode ? 'text-white/50' : 'text-slate-600'}`}>{currentUI.introDesc}</p>
+                                        <h3 className={`text-lg sm:text-2xl font-black mb-6 italic transition-colors duration-700 ${isDarkMode ? 'text-[#00ffff]' : 'text-black font-black'}`}>{currentUI.introSubtitle}</h3>
+                                        <p className={`text-base sm:text-2xl leading-relaxed transition-colors duration-700 ${isDarkMode ? 'text-white/50' : 'text-slate-600'}`}>{currentUI.introDesc}</p>
                                     </div>
                                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-left">
-                                        <div onClick={() => handleNavigate('team')} className={`hover-card group p-10 rounded-[3.5rem] border transition-all cursor-pointer shadow-2xl ${isDarkMode ? 'bg-emerald-600/5 border-white/10 hover:border-emerald-500/50' : 'bg-white border-black/5 hover:border-emerald-400'} flex flex-col justify-between min-h-[350px]`}>
-                                            <div><div className="flex items-center gap-6 text-emerald-500 mb-8 text-current font-black"><Users /> <h2 className="text-3xl sm:text-4xl font-black">{currentUI.menuTeam}</h2></div><p className={`text-lg sm:text-xl italic ${isDarkMode ? 'text-white/60' : 'text-slate-700'}`}>{isEn ? "Meet our visionary members." : "認識致力於此平台的學生成員與教授。"}</p></div>
+                                        <div onClick={() => handleNavigate('team')} className={`hover-card group p-10 rounded-[3.5rem] border transition-all duration-700 cursor-pointer shadow-2xl flex flex-col justify-between min-h-[350px] ${isDarkMode ? 'bg-emerald-600/5 border-white/10 hover:border-emerald-500/50' : 'bg-white border-black/5 hover:border-emerald-400'}`}>
+                                            <div><div className="flex items-center gap-6 text-emerald-500 mb-8 text-current font-black"><Users /> <h2 className="text-3xl sm:text-4xl font-black">{currentUI.menuTeam}</h2></div><p className={`text-lg sm:text-xl italic transition-colors duration-700 ${isDarkMode ? 'text-white/60' : 'text-slate-700'}`}>{isEn ? "Educators and builders redefining how strategy is learned in the age of AI." : "在 AI 時代重新定義策略學習方式的教育者與建構者。"}</p></div>
                                             <div className="mt-8 flex items-center gap-4 text-emerald-500 font-black uppercase text-xs tracking-widest text-current">Profiles &rarr;</div>
                                         </div>
-                                        <div className={`p-10 rounded-[3.5rem] border shadow-inner min-h-[350px] ${isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white border-black/5'}`}>
-                                            <div className="flex items-center gap-6 mb-8 text-indigo-500 text-current font-black"><Help /> <h2 className="text-3xl sm:text-4xl font-black text-current">{isEn ? "Portal Guide" : "使用指南"}</h2></div>
-                                            <div className={`space-y-8 text-base sm:text-xl italic leading-relaxed ${isDarkMode ? 'text-white/40 font-medium' : 'text-slate-600 font-bold'}`}><p>1. {currentUI.guideStep1}</p><p>2. {currentUI.guideStep2}</p></div>
+                                        
+                                        {/* 全新 Learning Guide 卡片 */}
+                                        <div onClick={() => handleNavigate('guide')} className={`hover-card group p-10 rounded-[3.5rem] border transition-all duration-700 cursor-pointer shadow-2xl flex flex-col justify-between min-h-[350px] ${isDarkMode ? 'bg-indigo-600/5 border-white/10 hover:border-indigo-500/50' : 'bg-white border-black/5 hover:border-indigo-400'}`}>
+                                            <div>
+                                                <div className="flex items-center justify-between mb-8 text-indigo-500">
+                                                    <div className="flex items-center gap-6 text-current font-black"><Help /> <h2 className="text-3xl sm:text-4xl font-black">{currentUI.guideTitle}</h2></div>
+                                                    <MousePointer className="opacity-20 group-hover:opacity-100" />
+                                                </div>
+                                                <h3 className={`text-lg sm:text-xl font-bold mb-4 transition-colors duration-700 ${isDarkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>{currentUI.guideSubtitle}</h3>
+                                                <p className={`text-sm sm:text-base leading-relaxed transition-colors duration-700 ${isDarkMode ? 'text-white/60' : 'text-slate-700'}`}>{currentUI.guideDesc}</p>
+                                            </div>
+                                            <div className="mt-8 flex items-center gap-4 text-indigo-500 font-black uppercase text-xs tracking-widest text-current">View Guide &rarr;</div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <h3 className="text-center text-xs font-black mb-16 uppercase tracking-[0.6em] opacity-30 text-current">{currentUI.tracks}</h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-left text-current">
-                                    <div onClick={() => handleNavigate('part1')} className={`hover-card group p-12 rounded-[4rem] border transition-all cursor-pointer min-h-[420px] flex flex-col justify-between shadow-2xl ${isDarkMode ? 'bg-[#08080a] border-white/10 hover:border-blue-500/40' : 'bg-white border-black/5 hover:border-blue-400'}`}>
-                                        <div><h2 className="text-xl sm:text-2xl font-black mb-1 opacity-50 tracking-widest uppercase">{currentUI.part1CardLabel}</h2><h2 className={`text-2xl sm:text-[2.8rem] font-black mb-8 whitespace-nowrap ${!isDarkMode && 'text-slate-900'}`}>{currentUI.part1CardTitle}</h2><p className={`text-sm sm:text-lg italic leading-relaxed ${isDarkMode ? 'text-white/60 font-medium' : 'text-slate-600 font-medium'}`}>{isEn ? currentUI.part1CardDesc : uiText.zh.part1CardDesc}</p></div>
+                                    <div onClick={() => handleNavigate('part1')} className={`hover-card group p-12 rounded-[4rem] border transition-all duration-700 cursor-pointer min-h-[420px] flex flex-col justify-between shadow-2xl ${isDarkMode ? 'bg-[#08080a] border-white/10 hover:border-blue-500/40' : 'bg-white border-black/5 hover:border-blue-400'}`}>
+                                        <div><h2 className="text-xl sm:text-2xl font-black mb-1 opacity-50 tracking-widest uppercase">{currentUI.part1CardLabel}</h2><h2 className={`text-2xl sm:text-4xl lg:text-[2.8rem] leading-tight break-words font-black mb-8 transition-colors duration-700 ${!isDarkMode && 'text-slate-900'}`}>{currentUI.part1CardTitle}</h2><p className={`text-sm sm:text-lg italic leading-relaxed transition-colors duration-700 ${isDarkMode ? 'text-white/60 font-medium' : 'text-slate-600 font-medium'}`}>{isEn ? currentUI.part1CardDesc : uiText.zh.part1CardDesc}</p></div>
                                         <button className="flex items-center gap-4 font-black uppercase text-blue-500 tracking-widest">{currentUI.enter} <ChevronRight /></button>
                                     </div>
-                                    <div onClick={() => handleNavigate('part2')} className={`hover-card group p-12 rounded-[4rem] border transition-all cursor-pointer min-h-[420px] flex flex-col justify-between shadow-2xl ${isDarkMode ? 'bg-[#08080a] border-white/10 hover:border-purple-500/40' : 'bg-white border-black/5 hover:border-purple-400'}`}>
-                                        <div><h2 className="text-xl sm:text-2xl font-black mb-1 opacity-50 tracking-widest uppercase">{currentUI.part2CardLabel}</h2><h2 className={`text-2xl sm:text-[2.8rem] font-black mb-8 whitespace-nowrap ${!isDarkMode && 'text-slate-900'}`}>{currentUI.part2CardTitle}</h2><p className={`text-sm sm:text-lg italic leading-relaxed ${isDarkMode ? 'text-white/60 font-medium' : 'text-slate-600 font-medium'}`}>{isEn ? currentUI.part2CardDesc : uiText.zh.part2CardDesc}</p></div>
+                                    <div onClick={() => handleNavigate('part2')} className={`hover-card group p-12 rounded-[4rem] border transition-all duration-700 cursor-pointer min-h-[420px] flex flex-col justify-between shadow-2xl ${isDarkMode ? 'bg-[#08080a] border-white/10 hover:border-purple-500/40' : 'bg-white border-black/5 hover:border-purple-400'}`}>
+                                        <div><h2 className="text-xl sm:text-2xl font-black mb-1 opacity-50 tracking-widest uppercase">{currentUI.part2CardLabel}</h2><h2 className={`text-2xl sm:text-4xl lg:text-[2.8rem] leading-tight break-words font-black mb-8 transition-colors duration-700 ${!isDarkMode && 'text-slate-900'}`}>{currentUI.part2CardTitle}</h2><p className={`text-sm sm:text-lg italic leading-relaxed transition-colors duration-700 ${isDarkMode ? 'text-white/60 font-medium' : 'text-slate-600 font-medium'}`}>{isEn ? currentUI.part2CardDesc : uiText.zh.part2CardDesc}</p></div>
                                         <button className="flex items-center gap-4 font-black uppercase text-purple-500 tracking-widest">{currentUI.enter} <ChevronRight /></button>
                                     </div>
                                 </div>
                             </div>
                         )}
 
+                        {/* 新增的 Learning Guide 頁面 */}
+                        {view === 'guide' && (
+                            <div className="animate-in max-w-5xl mx-auto pb-32 text-left text-current">
+                                <button onClick={() => handleNavigate('home')} className="flex items-center justify-start gap-4 mb-16 opacity-50 hover:opacity-100 font-bold uppercase tracking-widest transition-all"><Icons.ArrowLeft size={20} /> {currentUI.back}</button>
+                                <h1 className={`text-4xl sm:text-7xl font-black mb-6 text-gradient bg-gradient-to-r ${isDarkMode ? 'from-white via-indigo-400 to-indigo-600' : 'from-black via-indigo-700 to-indigo-900'} tracking-tighter uppercase leading-tight`}>{currentUI.guideTitle}</h1>
+                                <p className={`text-lg sm:text-2xl font-medium italic mb-16 whitespace-pre-line leading-relaxed max-w-4xl transition-colors duration-700 ${isDarkMode ? 'text-white/70' : 'text-slate-700'}`}>{currentUI.guidePageDesc}</p>
+
+                                <div className="relative pl-6 sm:pl-12 ml-4 sm:ml-6 border-l-[3px] border-indigo-500/20 space-y-12 sm:space-y-16">
+                                    {guideSteps.map((step, index) => (
+                                        <div key={step.id} className="relative group cursor-pointer" onClick={() => setExpandedStep(expandedStep === step.id ? null : step.id)}>
+                                            {/* 節點圓圈 */}
+                                            <div className={`absolute -left-[39px] sm:-left-[67px] top-2 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-black text-sm sm:text-base border-4 transition-all duration-500 ${expandedStep === step.id ? (isDarkMode ? 'bg-indigo-500 border-[#050507] text-white scale-110' : 'bg-indigo-600 border-slate-50 text-white scale-110') : (isDarkMode ? 'bg-[#050507] border-indigo-500/50 text-indigo-400 group-hover:border-indigo-500' : 'bg-slate-50 border-indigo-300 text-indigo-600 group-hover:border-indigo-500')}`}>
+                                                {step.id}
+                                            </div>
+                                            
+                                            {/* 內容卡片 */}
+                                            <div className={`p-6 sm:p-10 rounded-[2rem] border transition-all duration-500 ${expandedStep === step.id ? (isDarkMode ? 'bg-indigo-900/20 border-indigo-500/50 shadow-[0_0_40px_rgba(99,102,241,0.15)]' : 'bg-indigo-50 border-indigo-300 shadow-xl') : (isDarkMode ? 'bg-white/5 border-white/10 hover:border-indigo-500/30' : 'bg-white border-black/5 hover:border-indigo-300 shadow-sm')}`}>
+                                                <div className="flex justify-between items-center gap-4">
+                                                    <h3 className={`text-xl sm:text-2xl font-black transition-colors duration-500 ${expandedStep === step.id ? (isDarkMode ? 'text-white' : 'text-indigo-900') : (isDarkMode ? 'text-white/80' : 'text-slate-800')}`}>
+                                                        {isEn ? step.en.title : step.zh.title}
+                                                    </h3>
+                                                    <div className={`transform transition-transform duration-500 ${expandedStep === step.id ? 'rotate-180' : 'opacity-50'}`}>
+                                                        <ChevronDown />
+                                                    </div>
+                                                </div>
+                                                <div className={`overflow-hidden transition-all duration-500 ${expandedStep === step.id ? 'max-h-60 mt-6 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                                    <p className={`text-base sm:text-xl leading-relaxed font-medium ${isDarkMode ? 'text-indigo-200' : 'text-indigo-800/80'}`}>
+                                                        {isEn ? step.en.desc : step.zh.desc}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
                         {view === 'team' && (
                             <div className="animate-in pb-32 text-left text-current">
-                                {/* Left-aligned Back button (As requested) */}
                                 <button onClick={() => handleNavigate('home')} className="flex items-center justify-start gap-4 mb-16 opacity-50 hover:opacity-100 font-bold uppercase tracking-widest transition-all"><Icons.ArrowLeft size={20} /> {currentUI.back}</button>
                                 <h1 className={`text-4xl sm:text-7xl font-black mb-16 text-gradient bg-gradient-to-r ${isDarkMode ? 'from-white via-emerald-400 to-emerald-600' : 'from-black via-emerald-700 to-emerald-900'} tracking-tighter uppercase leading-tight`}>{isEn ? "Meet Our Team" : "團隊介紹"}</h1>
-                                <div className={`p-10 sm:p-20 rounded-[4rem] mb-20 border shadow-2xl flex flex-col md:flex-row items-center gap-12 text-center md:text-left ${isDarkMode ? 'bg-[#0a0a0c] border-white/10' : 'bg-white border-black/5'}`}>
-                                    <div className="w-48 h-64 sm:w-64 sm:h-80 rounded-[2rem] bg-slate-800 shrink-0 overflow-hidden flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-700">
-                                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-700 to-slate-900 text-white/10 font-black text-9xl">LO</div>
+                                
+                                <div className={`p-8 sm:p-12 lg:p-20 rounded-[3rem] lg:rounded-[4rem] mb-16 lg:mb-20 border shadow-2xl flex flex-col md:flex-row items-center md:items-start gap-8 lg:gap-12 text-center md:text-left transition-colors duration-700 ${isDarkMode ? 'bg-[#0a0a0c] border-white/10' : 'bg-white border-black/5'}`}>
+                                    <div className="w-48 h-64 sm:w-64 sm:h-80 rounded-[2rem] bg-slate-800 shrink-0 overflow-hidden flex items-center justify-center transition-all duration-700 relative shadow-xl">
+                                        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-700 to-slate-900 text-white/10 font-black text-9xl z-0">LO</div>
+                                        <img src="https://drive.google.com/thumbnail?id=1N0PdU_C5zS_P-z0tgjzAy1AbYYo1FrQu&sz=w1000" alt="Prof. Shihmin Lo" onError={(e) => e.target.style.display='none'} className="w-full h-full object-cover relative z-10" />
                                     </div>
                                     <div className="flex-grow text-left text-current">
-                                        <h3 className={`text-4xl sm:text-7xl font-black mb-2 tracking-tighter ${!isDarkMode && 'text-slate-900'}`}>Prof. Shihmin Lo</h3>
-                                        <p className="text-emerald-500 font-black tracking-[0.4em] mb-8 uppercase text-sm">{currentUI.footerInstructor}</p>
-                                        <div className="h-px bg-current opacity-10 w-full mb-8"></div>
-                                        <p className={`text-lg sm:text-3xl font-medium italic leading-relaxed ${isDarkMode ? 'text-white/70' : 'text-slate-700'}`}>International Strategic Management, Competitive Analysis, Platform Models.</p>
+                                        <h3 className={`font-extrabold mb-4 tracking-tight leading-[1.1] transition-colors duration-700 ${!isDarkMode ? 'text-slate-900' : 'text-white'} ${isEn ? 'text-4xl sm:text-6xl' : 'text-4xl sm:text-5xl'}`}>
+                                            {isEn ? "Prof. Shihmin Lo" : "駱世民"}
+                                        </h3>
+                                        <div className="mb-6 flex flex-wrap items-center gap-4 justify-center md:justify-start">
+                                            <span className="inline-block bg-emerald-500/10 text-emerald-500 px-4 py-1.5 rounded-full uppercase tracking-wider text-xs font-semibold border border-emerald-500/20">
+                                                {isEn ? "Instructor" : "指導教授"}
+                                            </span>
+                                            <div className={`inline-flex items-center gap-2 text-sm font-medium transition-colors ${isDarkMode ? 'text-white/50' : 'text-slate-500'}`}>
+                                                <Mail size={16} /> smlo@ncnu.edu.tw
+                                            </div>
+                                        </div>
+                                        <div className={`h-px w-full my-6 transition-colors duration-700 ${isDarkMode ? 'bg-white/5' : 'bg-black/5'}`}></div>
+                                        <div className="border-l-2 border-emerald-500/40 pl-6 max-w-3xl">
+                                            <h4 className="text-xs font-bold opacity-40 uppercase tracking-widest mb-2 transition-opacity duration-700">
+                                                {isEn ? "Expertise" : "專長領域"}
+                                            </h4>
+                                            <p className={`text-lg sm:text-2xl font-medium leading-relaxed transition-colors duration-700 ${isDarkMode ? 'text-white/70' : 'text-slate-700'} ${!isEn && 'tracking-wide'}`}>
+                                                {isEn ? "Int'l Business Strategy, Competitive Analysis, Platform Models" : "國際企業經營策略、產業競爭分析、平台商業模式。"}
+                                            </p>
+                                        </div>
+                                        
+                                        {/* 新增：YouTube 按鈕 */}
+                                        <a href="https://youtube.com/@shihminlo6097?si=bydjIojm0I49X16n" target="_blank" rel="noopener noreferrer" className={`mt-10 inline-flex items-center gap-3 px-6 py-3 rounded-full font-bold text-sm tracking-widest uppercase transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 ${isDarkMode ? 'bg-red-600 hover:bg-red-500 text-white' : 'bg-red-600 hover:bg-red-700 text-white'}`}>
+                                            <Youtube /> {isEn ? "YouTube Channel" : "YouTube 頻道"}
+                                        </a>
                                     </div>
                                 </div>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-left text-current">
+                                
+                                {/* TA Grid - RWD 優化，精確分為三欄 */}
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 text-left text-current w-full">
                                     {members.map(m => (
-                                        <div key={m.id} onClick={() => setSelectedMember(m)} className={`hover-card group relative p-0 rounded-[2.5rem] border cursor-pointer overflow-hidden min-h-[500px] flex flex-col justify-end ${isDarkMode ? 'border-white/5' : 'border-black/5'}`}>
+                                        <div key={m.id} onClick={() => setSelectedMember(m)} className={`hover-card group relative p-0 rounded-[2.5rem] border cursor-pointer overflow-hidden min-h-[400px] sm:min-h-[500px] flex flex-col justify-end transition-colors duration-700 ${isDarkMode ? 'border-white/5' : 'border-black/5'}`}>
                                             <div className="absolute inset-0 bg-slate-800 z-0 flex items-center justify-center text-white/5 font-black text-[12rem] uppercase select-none leading-none">{m.initials}</div>
+                                            {m.img && <img src={m.img} alt={isEn ? m.en.name : m.zh.name} onError={(e) => e.target.style.display='none'} className="absolute inset-0 w-full h-full object-cover z-0 group-hover:scale-105 transition-transform duration-700" />}
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10"></div>
-                                            <div className="relative z-20 p-8 text-white text-left">
-                                                <h4 className="text-3xl font-black mb-1 leading-none">{m.name}</h4>
-                                                <p className="text-emerald-400 font-bold text-xs tracking-widest uppercase mb-4">{m.dept}</p>
+                                            <div className="relative z-20 p-6 sm:p-8 text-white text-left break-words w-full">
+                                                <h4 className="text-2xl sm:text-3xl font-black mb-1 leading-none">{isEn ? m.en.name : m.zh.name}</h4>
+                                                <p className="text-emerald-400 font-bold text-xs tracking-widest uppercase mb-4">{isEn ? m.en.dept : m.zh.dept}</p>
                                                 <div className="pt-6 mt-6 border-t border-white/10 flex items-center justify-between opacity-60 group-hover:opacity-100 transition-opacity font-black text-[9px] tracking-widest uppercase">Profile &rarr;</div>
                                             </div>
                                         </div>
@@ -383,21 +556,21 @@
                                 
                                 <div className="space-y-16 mb-24 text-current">
                                     {detailedSections.map(sec => (
-                                        <div key={sec.id} className={`active-section p-10 sm:p-16 rounded-[4rem] border border-transparent shadow-xl ${isDarkMode ? 'hover:bg-white/5 text-white' : 'hover:bg-slate-200/50 text-slate-900'}`}>
+                                        <div key={sec.id} className={`active-section p-10 sm:p-16 rounded-[4rem] border border-transparent shadow-xl transition-colors duration-700 ${isDarkMode ? 'hover:bg-white/5 text-white' : 'hover:bg-slate-200/50 text-slate-900'}`}>
                                             <div className="flex items-center gap-8 mb-10 overflow-visible text-current">
                                                 <div className="p-3 bg-slate-500/10 rounded-2xl shrink-0 text-current">{React.cloneElement(sec.icon, { size: 40 })}</div>
                                                 <h2 className={`text-xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight whitespace-normal text-current`}>{isEn ? sec.en.title : sec.zh.title}</h2>
                                             </div>
-                                            {/* PHYSICAL COLOR FIX: Removed opacity-20. Pure Cyan for Dark, Solid Black for Light */}
-                                            <h3 className={`text-xl sm:text-[2.2rem] font-black mb-8 italic border-b border-white/10 pb-6 leading-tight ${isDarkMode ? 'text-[#00ffff]' : 'text-black font-black'}`}>
+                                            {/* 解決了淺色模式下的副標題顏色問題，採用高質感的青藍色 (cyan-600) */}
+                                            <h3 className={`text-xl sm:text-[2.2rem] font-black mb-8 italic border-b pb-6 leading-tight transition-colors duration-700 ${isDarkMode ? 'text-[#00ffff] border-white/10' : 'text-cyan-600 border-black/10'}`}>
                                                 {isEn ? sec.en.subtitle : sec.zh.subtitle}
                                             </h3>
-                                            <div className={`text-lg sm:text-2xl leading-relaxed whitespace-pre-line font-medium italic ${isDarkMode ? 'text-white/90' : 'text-slate-800'}`}>{isEn ? sec.en.content : sec.zh.content}</div>
+                                            <div className={`text-lg sm:text-2xl leading-relaxed whitespace-pre-line font-medium italic transition-colors duration-700 ${isDarkMode ? 'text-white/90' : 'text-slate-800'}`}>{isEn ? sec.en.content : sec.zh.content}</div>
                                         </div>
                                     ))}
                                 </div>
 
-                                <div className={`p-10 sm:p-16 rounded-[4rem] border shadow-2xl relative overflow-hidden ${isDarkMode ? 'bg-indigo-600/5 text-white border-white/10' : 'bg-indigo-50 text-slate-900 border-indigo-100'}`}>
+                                <div className={`p-10 sm:p-16 rounded-[4rem] border shadow-2xl relative overflow-hidden transition-colors duration-700 ${isDarkMode ? 'bg-indigo-600/5 text-white border-white/10' : 'bg-indigo-50 text-slate-900 border-indigo-100'}`}>
                                     <div className="flex flex-col items-center mb-12 text-current text-center">
                                         <div className="w-16 h-16 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 mb-6 animate-pulse"><Help size={32} /></div>
                                         <h2 className="text-3xl sm:text-5xl font-black text-center tracking-tight">{isEn ? "Knowledge Check" : "互動式問答挑戰"}</h2>
@@ -406,7 +579,7 @@
 
                                     <div className="space-y-12 text-current">
                                         {displayedQuestions.map((q) => (
-                                            <div key={q.id} className={`p-8 sm:p-10 rounded-[3rem] border transition-all duration-500 ${isDarkMode ? 'bg-black/40 border-white/5' : 'bg-white border-black/5 shadow-lg'}`}>
+                                            <div key={q.id} className={`p-8 sm:p-10 rounded-[3rem] border transition-all duration-700 ${isDarkMode ? 'bg-black/40 border-white/5' : 'bg-white border-black/5 shadow-lg'}`}>
                                                 <h4 className="text-xl sm:text-2xl font-bold mb-8 leading-relaxed text-left text-current">{q[lang].q}</h4>
                                                 <div className="grid grid-cols-1 gap-4">
                                                     {q[lang].options.map((opt, idx) => {
@@ -436,13 +609,13 @@
                                                                         {isCorrect && (
                                                                             <div className="mt-2 p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-left">
                                                                                 <div className="flex items-center gap-2 mb-2 text-current font-black"><span className="text-emerald-400">✅ {isEn ? "Correct Answer Logic" : "正確答案解析"}</span></div>
-                                                                                <p className={`text-sm sm:text-base opacity-95 leading-relaxed italic ${!isDarkMode && 'text-slate-800'}`}>{opt.expl}</p>
+                                                                                <p className={`text-sm sm:text-base opacity-95 leading-relaxed italic transition-colors duration-700 ${!isDarkMode && 'text-slate-800'}`}>{opt.expl}</p>
                                                                             </div>
                                                                         )}
                                                                         {isSelected && !isCorrect && (
                                                                             <div className="mt-2 p-6 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-left">
                                                                                 <div className="flex items-center gap-2 mb-2 text-current font-black"><span className="text-rose-400">❌ {isEn ? "Your Choice Analysis" : "您的選項解析"}</span></div>
-                                                                                <p className={`text-sm sm:text-base opacity-95 leading-relaxed italic ${!isDarkMode && 'text-slate-800'}`}>{opt.expl}</p>
+                                                                                <p className={`text-sm sm:text-base opacity-95 leading-relaxed italic transition-colors duration-700 ${!isDarkMode && 'text-slate-800'}`}>{opt.expl}</p>
                                                                             </div>
                                                                         )}
                                                                     </div>
@@ -466,21 +639,21 @@
                         {(view === 'part1' || view === 'part2') && (
                             <div className="animate-in pb-24 text-left text-current">
                                 <button onClick={() => handleNavigate('home')} className="flex items-center justify-start gap-4 mb-16 opacity-50 hover:opacity-100 font-bold uppercase tracking-widest transition-all text-current"><Icons.ArrowLeft size={20} /> {currentUI.back}</button>
-                                <div className={`mb-24 p-10 sm:p-16 rounded-[4rem] shadow-2xl border ${isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white border-black/5'}`}>
+                                <div className={`mb-24 p-10 sm:p-16 rounded-[4rem] shadow-2xl border transition-colors duration-700 ${isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white border-black/5'}`}>
                                     <h2 className="text-3xl sm:text-6xl font-black mb-10 text-gradient bg-gradient-to-r from-blue-400 to-indigo-500">{view === 'part1' ? currentUI.part1Header : currentUI.part2Header}</h2>
                                     <div className={`space-y-10 text-lg sm:text-2xl leading-relaxed font-medium italic text-left text-current`}>
-                                        <p className={isDarkMode ? 'text-white/90' : 'text-slate-800'}>{isEn ? (view === 'part1' ? uiText.en.part1SyllabusDesc : uiText.en.part2SyllabusDesc) : (view === 'part1' ? uiText.zh.part1SyllabusDesc : uiText.zh.part2SyllabusDesc)}</p>
+                                        <p className={`transition-colors duration-700 ${isDarkMode ? 'text-white/90' : 'text-slate-800'}`}>{isEn ? (view === 'part1' ? uiText.en.part1SyllabusDesc : uiText.en.part2SyllabusDesc) : (view === 'part1' ? uiText.zh.part1SyllabusDesc : uiText.zh.part2SyllabusDesc)}</p>
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-current text-left text-current">
                                     {allLectures.filter(l => (view === 'part1' ? l.part === 1 : l.part === 2)).map(l => (
-                                        <div key={l.id} onClick={() => handleNavigateToLN(l)} className={`hover-card group p-12 rounded-[3.5rem] border transition-all cursor-pointer flex flex-col justify-between min-h-[520px] shadow-2xl ${isDarkMode ? 'bg-[#0e0e12] border-white/5 hover:border-blue-500/30' : 'bg-white border-black/5 hover:border-blue-400'}`}>
+                                        <div key={l.id} onClick={() => handleNavigateToLN(l)} className={`hover-card group p-12 rounded-[3.5rem] border transition-all duration-700 cursor-pointer flex flex-col justify-between min-h-[520px] shadow-2xl ${isDarkMode ? 'bg-[#0e0e12] border-white/5 hover:border-blue-500/30' : 'bg-white border-black/5 hover:border-blue-400'}`}>
                                             <div>
                                                 <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${l.color} flex items-center justify-center text-white font-black text-2xl mb-12 shadow-lg transform group-hover:rotate-6 transition-transform`}>{l.id}</div>
-                                                <h3 className={`text-2xl sm:text-3xl font-bold mb-4 tracking-tight leading-tight group-hover:text-blue-500 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{isEn ? l.title_en : l.title_zh}</h3>
-                                                <p className="text-sm opacity-40 italic mb-10 leading-relaxed text-current">"{isEn ? l.sub_en : l.sub_en}"</p>
+                                                <h3 className={`text-2xl sm:text-3xl font-bold mb-4 tracking-tight leading-tight group-hover:text-blue-500 transition-colors duration-700 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{isEn ? l.title_en : l.title_zh}</h3>
+                                                <p className="text-sm opacity-40 italic mb-10 leading-relaxed text-current">"{isEn ? l.quote_en : l.quote_zh}"</p>
                                                 <div className={`w-16 h-1.5 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 mb-8 group-hover:w-full transition-all duration-700`}></div>
-                                                <p className="text-xs font-black opacity-60 uppercase tracking-[0.3em]">STRATEGY TRIPOD</p>
+                                                <p className="text-xs font-black opacity-60 uppercase tracking-[0.3em]">{isEn ? l.tag_en : l.tag_zh}</p>
                                             </div>
                                             <div className="pt-10 border-t border-white/5 flex items-center justify-between transition-all text-current"><span className="flex items-center gap-3 text-sm font-black text-amber-500 uppercase tracking-[0.2em] italic animate-pulse"><Clock /> {currentUI.statusComing}</span><ChevronRight size={24} className="opacity-20 group-hover:opacity-100 group-hover:translate-x-3 transition-all" /></div>
                                         </div>
@@ -492,13 +665,13 @@
                         {view === 'detail' && activeModule && (
                             <div className="animate-in slide-in-from-bottom-5 duration-700 text-left text-current">
                                 <button onClick={() => setView(activeModule.part === 1 ? 'part1' : 'part2')} className="flex items-center justify-start gap-4 mb-16 opacity-50 hover:opacity-100 font-bold uppercase tracking-widest text-current"><Icons.ArrowLeft size={20} /> Back to List</button>
-                                <div className={`p-16 rounded-[4rem] border shadow-2xl ${isDarkMode ? 'bg-[#0a0a0c] border-white/10 text-white' : 'bg-white shadow-xl text-slate-900'}`}>
+                                <div className={`p-16 rounded-[4rem] border shadow-2xl transition-colors duration-700 ${isDarkMode ? 'bg-[#0a0a0c] border-white/10 text-white' : 'bg-white shadow-xl text-slate-900'}`}>
                                     <div className="flex flex-col md:flex-row items-start md:items-center gap-10 mb-16 text-current text-left">
                                         <div className={`w-24 h-24 rounded-3xl bg-gradient-to-br ${activeModule.color} flex items-center justify-center text-white text-4xl font-black shadow-2xl`}>{activeModule.id}</div>
                                         <div className="min-w-0">
                                             <span className="text-blue-500 font-black text-[10px] tracking-widest uppercase mb-2 block tracking-[0.4em]">INTERACTIVE MODULE</span>
                                             <h2 className={`text-4xl sm:text-6xl font-black leading-tight break-words pb-4`}>{isEn ? activeModule.title_en : activeModule.title_zh}</h2>
-                                            <p className={`opacity-50 text-2xl italic mt-1 font-medium leading-relaxed`}>"{isEn ? activeModule.sub_en : activeModule.sub_en}"</p>
+                                            <p className={`opacity-50 text-2xl italic mt-1 font-medium leading-relaxed`}>"{isEn ? activeModule.quote_en : activeModule.quote_zh}"</p>
                                         </div>
                                     </div>
                                     <div className="min-h-[400px] flex items-center justify-center border-2 border-dashed border-slate-500/20 rounded-[3rem] opacity-30 italic text-xl text-center text-current">
@@ -510,16 +683,16 @@
                     </main>
 
                     {/* --- Footer --- */}
-                    <footer className={`py-12 border-t transition-colors duration-500 ${isDarkMode ? 'border-white/5 bg-black/95 text-white/40' : 'border-black/5 bg-slate-100 text-slate-500'}`}>
+                    <footer className={`py-12 border-t transition-colors duration-700 ${isDarkMode ? 'border-white/5 bg-black/95 text-white/40' : 'border-black/5 bg-slate-100 text-slate-500'}`}>
                         <div className="max-w-7xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center md:items-end gap-12 md:gap-0 text-center md:text-left text-current font-black">
                             <div className="flex flex-col gap-4 items-center md:items-start text-xs font-black uppercase tracking-widest leading-none text-current text-left">
                                 <span>{currentUI.footerCourse}</span>
-                                <div className="flex gap-8 text-[11px] opacity-30 mt-2 text-current font-black"><span>v7.7.1</span><a href="https://www.ncnu.edu.tw/" target="_blank" className="hover:text-blue-500 underline decoration-white/20 transition-colors">NCNU</a></div>
+                                <div className="flex gap-8 text-[11px] opacity-30 mt-2 text-current font-black"><span>v7.7.1</span><a href="https://www.ncnu.edu.tw/" target="_blank" rel="noreferrer" className="hover:text-blue-500 underline decoration-white/20 transition-colors">NCNU</a></div>
                             </div>
                             <div className="flex flex-col items-center md:items-end gap-4 text-center md:text-right text-current font-black">
                                 <div className="flex gap-6 mb-2 text-[11px] font-bold uppercase tracking-widest text-current font-black">
-                                    <a href="https://www.ibs.ncnu.edu.tw/index.php/faculty/tenured-professor/299-smlo" target="_blank" className="opacity-60 hover:opacity-100 hover:text-purple-400 transition-all flex items-center gap-2">{currentUI.footerInstructor} <External size={12} /></a>
-                                    <a href="https://www.ibs.ncnu.edu.tw/" target="_blank" className={`opacity-60 hover:opacity-100 hover:text-blue-400 transition-all flex items-center gap-2`}>{currentUI.footerDept} <External size={12} /></a>
+                                    <a href="https://www.ibs.ncnu.edu.tw/index.php/faculty/tenured-professor/299-smlo" target="_blank" rel="noreferrer" className="opacity-60 hover:opacity-100 hover:text-purple-400 transition-all flex items-center gap-2">{currentUI.footerInstructor} <External size={12} /></a>
+                                    <a href="https://www.ibs.ncnu.edu.tw/" target="_blank" rel="noreferrer" className={`opacity-60 hover:opacity-100 hover:text-blue-400 transition-all flex items-center gap-2`}>{currentUI.footerDept} <External size={12} /></a>
                                 </div>
                                 <p className="text-[10px] font-bold opacity-30 tracking-tight text-current font-black text-right">© 2026 International Strategic Management Portal</p>
                             </div>
@@ -528,26 +701,55 @@
 
                     {/* Member Modal */}
                     {selectedMember && (
-                        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6 bg-black/95 backdrop-blur-md">
-                            <div className={`modal-animate relative w-full max-w-5xl rounded-[3rem] overflow-hidden flex flex-col lg:flex-row bg-white text-slate-900 border border-slate-200 shadow-[0_80px_160px_rgba(0,0,0,1)] text-slate-900 text-left`}>
-                                <button onClick={() => setSelectedMember(null)} className={`absolute top-6 right-6 z-30 p-2 rounded-full bg-black/5 hover:bg-black/10 transition-colors text-slate-900`}><X /></button>
-                                <div className="lg:w-1/2 h-[450px] lg:h-auto relative overflow-hidden bg-slate-100 flex items-center justify-center text-center">
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
-                                    <div className="w-full h-full flex items-center justify-center text-slate-200 font-black text-[12rem] select-none leading-none">{selectedMember.initials}</div>
-                                    <div className="absolute bottom-10 left-10 z-20 text-white text-left">
-                                        <h2 className="text-5xl font-black mb-1 leading-none text-left">{selectedMember.name}</h2>
-                                        <p className="text-emerald-400 font-bold uppercase tracking-widest text-sm text-left">{selectedMember.dept}</p>
+                        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6 bg-black/95 backdrop-blur-md transition-colors duration-700">
+                            <div className={`modal-animate relative w-full max-w-5xl max-h-[92vh] rounded-[2rem] sm:rounded-[3rem] overflow-hidden flex flex-col lg:flex-row border shadow-[0_80px_160px_rgba(0,0,0,1)] text-left transition-colors duration-700 ${isDarkMode ? 'bg-[#0a0a0c] text-white border-white/10' : 'bg-white text-slate-900 border-slate-200'}`}>
+                                <button onClick={() => setSelectedMember(null)} className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 p-2.5 rounded-full bg-black/50 text-white hover:bg-black/70 backdrop-blur-md transition-all"><X size={20} /></button>
+                                <div className={`w-full lg:w-1/2 h-[300px] sm:h-[400px] lg:h-auto shrink-0 relative overflow-hidden flex items-center justify-center text-center transition-colors duration-700 ${isDarkMode ? 'bg-slate-900' : 'bg-slate-100'}`}>
+                                    <div className={`absolute inset-0 flex items-center justify-center font-black text-[12rem] select-none leading-none transition-colors duration-700 ${isDarkMode ? 'text-white/10' : 'text-black/5'}`}>{selectedMember.initials}</div>
+                                    {selectedMember.img && <img src={selectedMember.img} alt={isEn ? selectedMember.en.name : selectedMember.zh.name} onError={(e) => e.target.style.display='none'} className="absolute inset-0 w-full h-full object-cover z-0" />}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10 z-10"></div>
+                                    <div className="absolute bottom-6 left-6 sm:bottom-10 sm:left-10 z-20 text-white text-left">
+                                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-2 leading-none text-left">{isEn ? selectedMember.en.name : selectedMember.zh.name}</h2>
+                                        <div className="mt-1 sm:mt-2 space-y-1 sm:space-y-2">
+                                            <p className="text-emerald-400 font-bold uppercase tracking-widest text-xs sm:text-sm text-left">{isEn ? selectedMember.en.dept : selectedMember.zh.dept}</p>
+                                            {selectedMember.email && (
+                                                <div className="inline-flex items-center gap-2 text-[10px] sm:text-xs font-medium text-white/80 transition-colors">
+                                                    <Mail size={14} /> {selectedMember.email}
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="lg:w-1/2 p-10 sm:p-16 overflow-y-auto no-scrollbar max-h-[80vh] lg:max-h-[90vh]">
-                                    <div className="space-y-12 text-left text-slate-900 text-left">
-                                        <div><h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mb-6 text-left">ABOUT</h4>
-                                            <ul className="space-y-5 text-left">{selectedMember.about.map((line, i) => (
-                                                <li key={i} className="text-lg font-medium opacity-90 leading-relaxed flex items-start gap-4 text-left"><span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-3 shrink-0 text-left"></span> {line}</li>
+                                <div className="w-full lg:w-1/2 flex-1 p-6 sm:p-10 lg:p-16 overflow-y-auto no-scrollbar">
+                                    <div className={`space-y-8 lg:space-y-12 text-left transition-colors duration-700 ${isDarkMode ? 'text-white/90' : 'text-slate-900'}`}>
+                                        <div><h4 className={`text-[10px] font-black uppercase tracking-[0.4em] mb-4 sm:mb-6 text-left transition-colors duration-700 ${isDarkMode ? 'text-white/40' : 'text-slate-400'}`}>ABOUT</h4>
+                                            <ul className="space-y-4 sm:space-y-5 text-left">{(isEn ? selectedMember.en.about : selectedMember.zh.about).map((line, i) => (
+                                                <li key={i} className="text-base sm:text-lg font-medium opacity-90 leading-relaxed flex items-start gap-4 text-left"><span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-2.5 shrink-0 text-left"></span> {line}</li>
                                             ))}</ul>
                                         </div>
-                                        <div><h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mb-6 text-left">INTRO VIDEO</h4>
-                                            <div className="aspect-video rounded-[2.5rem] bg-slate-900 border border-slate-200 flex items-center justify-center group cursor-pointer hover:shadow-2xl transition-all relative overflow-hidden text-white"><div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-2xl shadow-red-500/20"><Play /></div><div className="absolute bottom-6 right-6 bg-black/60 backdrop-blur px-4 py-1.5 rounded-full text-[9px] font-bold tracking-[0.2em] uppercase text-white text-left text-current">poc presentation</div></div>
+                                        <div>
+                                            <h4 className={`text-[10px] font-black uppercase tracking-[0.4em] mb-4 sm:mb-6 text-left transition-colors duration-700 ${isDarkMode ? 'text-white/40' : 'text-slate-400'}`}>INTRO VIDEO</h4>
+                                            {selectedMember.youtubeId ? (
+                                                <a href={`https://youtu.be/${selectedMember.youtubeId}`} target="_blank" rel="noopener noreferrer" className={`block aspect-video rounded-[2rem] sm:rounded-[2.5rem] border relative overflow-hidden shadow-xl group cursor-pointer hover:shadow-2xl transition-all duration-500 ${isDarkMode ? 'bg-slate-900 border-white/10' : 'bg-slate-800 border-slate-700'}`}>
+                                                    {selectedMember.ytThumbnail && (
+                                                        <img src={selectedMember.ytThumbnail} alt={`${isEn ? selectedMember.en.name : selectedMember.zh.name} Video Thumbnail`} onError={(e) => e.target.style.display='none'} className="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-700 group-hover:scale-105" />
+                                                    )}
+                                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500 z-10"></div>
+                                                    <div className="absolute inset-0 flex items-center justify-center z-20 text-white">
+                                                        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-red-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-2xl shadow-red-500/20">
+                                                            <Play />
+                                                        </div>
+                                                    </div>
+                                                    <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-6 bg-black/60 backdrop-blur px-3 sm:px-4 py-1.5 rounded-full text-[8px] sm:text-[9px] font-bold tracking-[0.2em] uppercase text-white text-left z-20">
+                                                        {isEn ? "Watch on YouTube" : "前往 YouTube 觀看"}
+                                                    </div>
+                                                </a>
+                                            ) : (
+                                                <div className={`aspect-video rounded-[2rem] sm:rounded-[2.5rem] border flex items-center justify-center group cursor-pointer hover:shadow-2xl transition-all relative overflow-hidden text-white ${isDarkMode ? 'bg-slate-900 border-white/10' : 'bg-slate-800 border-slate-700'}`}>
+                                                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-red-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-2xl shadow-red-500/20"><Play /></div>
+                                                    <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-6 bg-black/60 backdrop-blur px-3 sm:px-4 py-1.5 rounded-full text-[8px] sm:text-[9px] font-bold tracking-[0.2em] uppercase text-white text-left text-current">poc presentation</div>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
